@@ -1,0 +1,3 @@
+1) Mostrar a professora como estamos a ler e armezenar e pedir opiniao
+2) Perguntar como calcular a entropia
+3)Testar usar a classe e os atributos de CSVReader noutras classes 
