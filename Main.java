@@ -42,7 +42,7 @@ public class Main{
             Classes.add(example[example.length-1]) ;
     }
 
-    public static int getPos_col(String attribute){     //retorna o indice que corresponde a um dado atributo
+    public static int getPos_col(String attribute){     //retorna o indice que corresponde a um dado atributo  (coluna)
         for (int i = 0 ; i < Examples.size(); i++){
             if (Attributes.get(i).equals(attribute))
                 return i;
@@ -51,7 +51,6 @@ public class Main{
         return -1;
 
     }
-
     public static void main(String[] args) throws Exception{
         Read_csv(args[0]);
         
@@ -60,7 +59,5 @@ public class Main{
 
         Tabela t = new Tabela(Example_size-1,Examples,Attributes);
 
-        //todo Fazer classe's que representem a Tabela que
-        //todo represente valor da variavel(coluna) -> frequencias de valores de class
     }
 }

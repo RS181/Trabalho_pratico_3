@@ -1,2 +1,8 @@
-1) Perguntar como calcular a entropia
-2) Criar uma class tabela para auxiliar no calculo da entropia (VERIFICAR ESTA CLASSE)
+
+1) Criar uma class tabela para auxiliar no calculo da entropia (VERIFICAR ESTA CLASSE)
+    1.1)Perguntar qual a formula para calcular entropia 
+    1.2)verificar se o calculo da entropia esta certo (class Node)
+    1.3) confirmar se funciona para todos os csv , com o calculo da entropia e melhor atributo
+2) Pedir para explicar o ID3 ,no contexto deste Trabalho pratico , e o que Faz
+cada "parte" do codigo
+2) Perguntar a professora se tem as tabelas que correspondem a todos os csvs 
