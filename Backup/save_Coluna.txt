@@ -1,9 +1,10 @@
+// 3 /05/2023 14:07
 import java.util.*;
 
 class Coluna{   //Representa uma coluna na tabela auxiliar
-    String nome;                                          //nome da coluna
-    private Map<String,Map<String,String>> mapa_coluna;   // variavel -> (classe -> indice's do's exemplos)
-    Map<String,Map<String,Set<Integer>>> m;               //variavel -> (class  -> {indece's do's exemplos}
+    String nome;                                  //nome da coluna
+    Map<String,Map<String,String>> mapa_coluna;   // variavel -> (classe -> indice's do's exemplos)
+    Map<String,Map<String,Set<Integer>>> m;        
     
     Coluna (String nome,ArrayList<String> col,ArrayList<String[]> examples,int nr_col){
         this.nome = nome;
@@ -18,7 +19,9 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
     }
 
     void Pretty_Print(){
-        // for (String s : mapa_coluna.keySet() ) System.out.println(s + " | " + mapa_coluna.get(s)); System.out.println("====");
+        for (String s : mapa_coluna.keySet() )
+            System.out.println(s + " | " + mapa_coluna.get(s));
+        System.out.println("====");
         for (String s : m.keySet()){
             System.out.println(s + " | " + m.get(s));
         }

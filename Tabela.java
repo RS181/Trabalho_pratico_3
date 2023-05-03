@@ -18,9 +18,11 @@ class Tabela {   //Representar a estrutura de dados auxiliar para calcular a ent
         Iniatialize();
 
         //! Testes para o calculo da entropia
-        Coluna aux = colunas[0];
-        Node n = new Node(aux.nome,aux.mapa_coluna);
+        Coluna aux = colunas[4];
+        ROOTNode n = new ROOTNode(aux.nome,colunas,examples,attributes);
     }
+
+
 
     void Iniatialize(){
         for (int j = 1 ; j < numero_colunas ; j++){

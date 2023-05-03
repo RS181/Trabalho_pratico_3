@@ -30,6 +30,7 @@ public class Main{
         }
         sc.close();
         
+        //! NAO ESTAMOS A TER EM CONTA O ID (primeira coluna do csv)!!!!
         int i = 1;
         for (String[] example : Examples){
             System.out.println("Exemplo " + i + ": " + Arrays.toString(example));
@@ -57,6 +58,8 @@ public class Main{
     
         get_Classes();
 
+
+        //Tabela inicial (so precissamos desta tabela inicial)
         Tabela t = new Tabela(Example_size-1,Examples,Attributes);
 
     }

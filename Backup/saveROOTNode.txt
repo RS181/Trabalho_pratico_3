@@ -1,27 +1,28 @@
+//03/05/2023 14:08
 import java.util.*;
-//todo Confirmar se isto sao os atributos necessarios a um no
-class Node {
-    //?Atributos de um no
-    String name_col;     //nome da coluna do no atual
-    String name_of_edge;    //nome da aresta  pai -> filho 
-    Node Pai;   //Pai do no atual 
-    ArrayList <Node> filhos;     //filhos (caso existam de um no)
+class ROOTNode {
+    String name_col;                                        //nome da coluna do no atual
+    Map <String ,Set<Integer>> map ;                        //Mapa (class -> indice's do exemplo)
+    double Entropia;                                        //Contem a entropia do no atual 
+    //ArrayList <DecisionNode> filhos;                      //filhos (caso existam de um no)
 
-    //? Calculo de entropia 
-    Map <String ,Set<Integer>> map ;    //Mapa (class , indice's do exemplo)
-    double Entropia;    //Contem a entropia do no atual 
+    ArrayList<String[]> Example_Population;                 //Populacao de exemplo 
+    ArrayList<String> Original_attributes;                  //atributos ou colunas
 
+    Coluna[] colunas;                                       // contem todas as colunas 
 
-    Node(String nome_coluna, Map<String,Map<String,String>> mapa_coluna){
-        //Inicializamos as estruturas de dados 
+    ROOTNode(String nome_coluna, Map<String,Map<String,String>> variavel_class_indice,Coluna[] colunas){
+        //Inicialzamos as estruturas de dados
         map = new HashMap<>();
-        filhos = new ArrayList<>();
-
+        //filhos = new ArrayList<>();
+        
         //Inicializamos o no
         this.name_col= nome_coluna;
+        this.colunas = colunas; 
+        //Iniializa map (class ->indice's os exemplos)
+        for (String s : variavel_class_indice.keySet())
+            Iniatialize(variavel_class_indice.get(s));
 
-        for (String s : mapa_coluna.keySet())
-            Iniatialize(mapa_coluna.get(s));
         Print_Class_Examples();
         Calculate_Entropia();
     }
@@ -66,7 +67,6 @@ class Node {
 
         System.out.println("Total exemplos : " + total);
         System.out.println("Numero de classes: " + nr_classes); 
-        System.out.println("Entropia = "+ Entropia );
 
         //Calculo da entropia
         String calc = "";
