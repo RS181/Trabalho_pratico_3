@@ -57,9 +57,67 @@ Thai | {No=[1, 10], Yes=[3, 7]}
 0-10 | {No=[6, 10], Yes=[0, 2, 5, 7]}
 30-60 | {No=[1], Yes=[11]}
 -------------------
+------------No:Pat------------
+No | [1, 4, 6, 8, 9, 10]
+Yes | [0, 2, 3, 5, 7, 11]
 ->{Some={Yes=[0, 2, 5, 7]}, None={No=[6, 10]}, Full={No=[1, 4, 8, 9], Yes=[3, 11]}}
-Calculo da entropia:
+
+Calculo da entropia RN da coluna Pat
     Total exemplos : 12
     Numero de classes: 2
-    (-(6/12)log2(6/12)) * (-(6/12)log2(6/12)) * 1
+    (-(6/12)log2(6/12)) *  = 0.5
+    (-(6/12)log2(6/12)) * (-(6/12)log2(6/12)) *  = 1.0
     Valor de entropia do no atual = 1.0
+
+numero de nos decisao = 3
+
+Calculo da entropia DN do branch Some
+    Total exemplos : 4
+    Numero de classes : 1
+    (-(4/4)log2(4/4)) *  = 0.0
+    Valor de entropia do no atual = 0.0
+-----Decision Node description-----
+RootNode = Pat
+Branch = Some
+Entropia = 0.0
+Mapa class ->indice : 
+Yes | [0, 2, 5, 7]
+-----End of description-----
+
+
+Calculo da entropia DN do branch None
+    Total exemplos : 2
+    Numero de classes : 1
+    (-(2/2)log2(2/2)) *  = 0.0
+    Valor de entropia do no atual = 0.0
+-----Decision Node description-----
+RootNode = Pat
+Branch = None
+Entropia = 0.0
+Mapa class ->indice : 
+No | [6, 10]
+-----End of description-----
+
+
+Calculo da entropia DN do branch Full
+    Total exemplos : 6
+    Numero de classes : 2
+    (-(4/6)log2(4/6)) *  = 0.38997500048077083
+    (-(4/6)log2(4/6)) * (-(2/6)log2(2/6)) *  = 0.9182958340544896
+    Valor de entropia do no atual = 0.9182958340544896
+-----Decision Node description-----
+RootNode = Pat
+Branch = Full
+Entropia = 0.9182958340544896
+Mapa class ->indice : 
+No | [1, 4, 8, 9]
+Yes | [3, 11]
+-----End of description-----
+
+----Information Gain----
+Branch  Some tem 4 exemplos
+Branch  None tem 2 exemplos
+Branch  Full tem 6 exemplos
+1.0 - ((4/12.0) * 0.0) - ((2/12.0) * 0.0) - ((6/12.0) * 0.9182958340544896) 
+Ganho de informacao = 0.5408520829727552
+----Fim----

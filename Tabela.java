@@ -22,7 +22,7 @@ class Tabela {   //Representar a estrutura de dados auxiliar para calcular a ent
         ROOTNode n = new ROOTNode(aux.nome,colunas,examples,attributes);
     }
 
-
+    
 
     void Iniatialize(){
         for (int j = 1 ; j < numero_colunas ; j++){
