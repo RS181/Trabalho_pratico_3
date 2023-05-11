@@ -9,27 +9,30 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
         this.nome = nome;
         mapa_coluna = new HashMap<>();
         m = new HashMap<>();
-        System.out.println( "--------" + nome + "--------");
         Iniatialize(nr_col, col,examples);
-        // System.out.println("-------------teste------------");
         Iniatialize();
-        Pretty_Print();
+        // Pretty_Print();
 
     }
 
     void Pretty_Print(){
         // for (String s : mapa_coluna.keySet() ) System.out.println(s + " | " + mapa_coluna.get(s)); System.out.println("====");
+        System.out.println( "--------" + nome + "--------");
         for (String s : m.keySet()){
             System.out.println(s + " | " + m.get(s));
         }
-    
+        System.out.println("-------------------");
     }
     
     //Inicializa mapa_coluna
+    //! para juntar em intervalos os valores numericos 
+    //! tem que ser neste Iniatialiaze 
     void Iniatialize(int nr_col,ArrayList<String> col,ArrayList<String[]> examples){
+        
         for (int i = 0 ; i < examples.size() ;i++){
+            
             String Goal = examples.get(i)[nr_col];
-
+            
             if (mapa_coluna.get(col.get(i)) == null){
                 Map<String ,String> aux = new HashMap<>();
                 aux.put(Goal, i + "");

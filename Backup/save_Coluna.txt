@@ -1,10 +1,10 @@
-// 3 /05/2023 14:07
+// 04/05/2023 17:22
 import java.util.*;
 
 class Coluna{   //Representa uma coluna na tabela auxiliar
-    String nome;                                  //nome da coluna
-    Map<String,Map<String,String>> mapa_coluna;   // variavel -> (classe -> indice's do's exemplos)
-    Map<String,Map<String,Set<Integer>>> m;        
+    String nome;                                          //nome da coluna
+    private Map<String,Map<String,String>> mapa_coluna;   // variavel -> (classe -> indice's do's exemplos)
+    Map<String,Map<String,Set<Integer>>> m;               //variavel -> (class  -> {indece's do's exemplos}
     
     Coluna (String nome,ArrayList<String> col,ArrayList<String[]> examples,int nr_col){
         this.nome = nome;
@@ -19,9 +19,7 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
     }
 
     void Pretty_Print(){
-        for (String s : mapa_coluna.keySet() )
-            System.out.println(s + " | " + mapa_coluna.get(s));
-        System.out.println("====");
+        // for (String s : mapa_coluna.keySet() ) System.out.println(s + " | " + mapa_coluna.get(s)); System.out.println("====");
         for (String s : m.keySet()){
             System.out.println(s + " | " + m.get(s));
         }
@@ -29,10 +27,14 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
     }
     
     //Inicializa mapa_coluna
+    //! para juntar em intervalos os valores numericos 
+    //! tem que ser neste Iniatialiaze (FAZER ISSO)
     void Iniatialize(int nr_col,ArrayList<String> col,ArrayList<String[]> examples){
+        
         for (int i = 0 ; i < examples.size() ;i++){
+            
             String Goal = examples.get(i)[nr_col];
-
+            
             if (mapa_coluna.get(col.get(i)) == null){
                 Map<String ,String> aux = new HashMap<>();
                 aux.put(Goal, i + "");

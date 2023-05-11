@@ -5,14 +5,23 @@ class ROOTNode {
     Map<String,Map<String,Set<Integer>>> var_class_ind;     //Mapa (var -> (class -> {indice's}) )  
     double Entropia_R;                                      //Contem a entropia do no atual 
     double Gain_R;                                          //ganho de informacao neste no
-    ArrayList <DecisionNode> filhos;                        //filhos (caso existam de um no)
+    // ArrayList <ROOTNode> filhos;                        //filhos (caso existam de um no)
 
     ArrayList<String[]> Example_Population;                 //Populacao de exemplo 
     ArrayList<String> Original_attributes;                  //atributos ou colunas
 
     Coluna[] colunas;                                       // contem todas as colunas 
 
+    ROOTNode(){
 
+    }
+
+    // Construtor de um no folha 
+    ROOTNode(String nome_class){
+        name_col = nome_class;
+    }
+
+    // Construtor de um no normal
     ROOTNode(String nome_coluna,Coluna[] colunas,ArrayList<String[]> Example_Population,ArrayList<String> Original_attributes){
         //Inicializamos o no
         this.name_col= nome_coluna;
@@ -21,71 +30,20 @@ class ROOTNode {
         this.Original_attributes = Original_attributes; 
         
         class_indice = new HashMap<>();
-        filhos = new ArrayList<>();
-
+        // filhos = new ArrayList<>();
 
         Iniatialize();
-        Print_Class_Examples();
-        System.out.println("->"+var_class_ind+"\n");
+        // Print_Class_Examples();
         
         Calculate_Entropia();
-        Create_Decisions_Nodes();
+        // Create_Decisions_Nodes();    //esta no backup
 
-        Calculate_Information_Gain();
-
+        // Calculate_Information_Gain();  esta no backup 
     }
-
-
-
-    void Calculate_Information_Gain(){      //calcula o ganho de informacao
-        System.out.println("----Information Gain----");
-        Gain_R = Entropia_R;
-        double total = 0;                      //total de exemplos do no atual
-        
-        String calc = Entropia_R + " ";
-
-        for (String s : class_indice.keySet())
-            total += class_indice.get(s).size();
-        
-        for (DecisionNode f : filhos){
-            int total_si = 0;
-            for (String clas : f.examples_branch.keySet())
-                total_si += f.examples_branch.get(clas).size();
-            
-            calc += "- ((" + total_si + "/" + total + ") * " + f.Entropia_D + ") " ;
-            System.out.println("Branch  " + f.branch + " tem " +total_si + " exemplos");
-            
-            Gain_R -= (double)total_si/total * f.Entropia_D;
-        
-        }
-        System.out.println(calc );
-        System.out.println("Ganho de informacao = " + Gain_R);
-        System.out.println("----Fim----");
-        
-    }
-
-
-    void Create_Decisions_Nodes(){      //Cria os nos de decisao
-        System.out.println("\nnumero de nos decisao = " + var_class_ind.size());
-
-        for (String var : var_class_ind.keySet()){
-            /*Nota : new HasMap<>(...) , permite criar um novo 
-              Hasmap com os mesmos conteudo de var_class_ind.get(var) 
-              evitando a "localidade" ,ou seja , podemos alterar valores 
-              num e essas alteracoes nao afetam o outro */
-            DecisionNode si = new DecisionNode(var, new HashMap<>(var_class_ind.get(var)), this);
-            System.out.println(si);
-            filhos.add(si);
-        }
-
-    }
-
-
-
-
 
     void Print_Class_Examples(){     //Imprime o mapa com (class -> Indice dos exemplos)
         System.out.printf("------------No:%s------------\n",name_col);
+        System.out.println("->"+var_class_ind+"\n");
         for(String c : class_indice.keySet()){
             System.out.println(c + " | " + class_indice.get(c));
         }

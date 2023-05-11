@@ -1,3 +1,4 @@
+//11/05/2023
 import java.nio.file.Paths;
 import java.util.*;
 import java.io.*;
@@ -6,7 +7,6 @@ public class Main{
     static ArrayList<String[]> Examples = new ArrayList<>();            //Guarda os exemplos 
     static int Example_size;                                            //Tamanho de cada exemplo
     static Set<String> Classes = new HashSet<>();                       //Classes diferentes que existem no DataSet
-    static Tabela tabela;                                               //Estrutura de dados auxiliar (ver classe para perceber o que contem)
 
     public static void Read_csv(String name) throws Exception{
         File file1 = new File(name);
@@ -53,12 +53,36 @@ public class Main{
         return -1;
 
     }
-
-
-    public static ROOTNode ID3(ArrayList<String[]> examples,String Target_Attribute,ArrayList<String> attributes ){
+    
+    //ID3   (Tabela contem exemplos , atributos e target attribute)
+    public static ROOTNode ID3(Tabela t){
         ROOTNode root = new ROOTNode();
 
+        /*verifica se os exemplos presentes na tabela sao
+        todos  da mesma classe*/
+        if (t.Same_class()) {
+            System.out.println("Temos uma tabela onde todos pertencem ao mesmo no");
+            // for (String[] e : t.examples)
+                // System.out.println(Arrays.toString(e));
+            int pos = t.examples.get(0).length-1;
+            root = new ROOTNode(t.examples.get(0)[pos]);
+            return root;
+        }
+        /*Caso nao existam mais atributos */
+        if (t.attributes.size() == 2){
+            System.out.println("class mais comum : " + t.Most_Common_Class());
+            root = new ROOTNode(t.Most_Common_Class());
 
+        }
+        else{
+            //Calcular a entropia de todos os atributos em t.atributes 
+            // e escolher aquele que tem menor entropia
+
+            //!DUVIDA , PARA ESCOLHER O ATRIBUTO 
+            // QUE MELHOR CLASSIFICA EU LEMTRO-ME DA PROFESSORA DIZER PARA
+            // ESCOLHER LOCALMENTE (PEDIR PARA EXPLICAR PARA UM EXEMPLO)
+
+        }
         return root; 
     }
     
@@ -67,14 +91,24 @@ public class Main{
         Read_csv(args[0]);
         
         get_Classes();
-        
-        //Inicializamos a estrutura de dados auxiliar com os exemplos a atributos iniciais
-        tabela = new Tabela(Example_size-1,Examples,Attributes);
-        for (Coluna  c : tabela.colunas){
+
+        // Map <String ,Integer> Target_attribute= new HashMap<>();  // class -> frequencia
+        // for (String[] e : Examples){
+        //     String temp = e[Example_size-1];
+        //     if (Target_attribute.get(temp) == null)
+        //         Target_attribute.put (temp,1);
+        //     else
+        //         Target_attribute.put(temp, Target_attribute.get(temp) + 1);
+        // }
+        // System.out.println(Target_attribute);
+        //Tabela inicial (so precissamos desta tabela inicial)
+        Tabela t = new Tabela(Example_size-1,Examples,Attributes);
+        for (Coluna  c : t.colunas){
             if (c != null)
                 c.Pretty_Print();
         }
         //Implementar o id3 aqui
-        ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes));
+        ID3(t);
+
     }
 }

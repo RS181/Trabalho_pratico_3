@@ -1,15 +1,19 @@
 
-1) Criar uma class tabela para auxiliar no calculo da entropia (VERIFICAR ESTA CLASSE)
-    1.1)Perguntar qual a formula para calcular entropia 
-    1.2)verificar se o calculo da entropia esta certo (class Node)
-    1.3) confirmar se funciona para todos os csv , com o calculo da entropia e melhor atributo
-❗❗1.4) para decidir o melhor splitting attribute temos de gerar os nos filhos de todos 
-os atributos e verificar qual deles da um maior ganho de informacao
-❗❗2) Pedir para explicar a figura que temos no trabalho Learn-Decision_Tree
-3) Pedir para explicar o ID3 ,no contexto deste Trabalho pratico , e o que Faz
-cada "parte" do codigo
-4) Perguntar a professora se tem as tabelas que correspondem a todos os csvs 
+1)Pedir para explicar o processo de escolher o melhor splitting attribute 
+no ID3
 
 
 
 TER CUIDADO COM A "LOCALIDADE" QUANDO ESTAMOS A ALTERAR VALORES!!!!!
+
+
+A professora esta pela faculdade caso tenhamos duvidas
+
+
+Nota: 
+
+
+1) RESTRUTURAR O CODIGO (ROOTNODE e DECISIONNODE,
+guarda-los em backup) SEGUINDO O ID3 , nao esquencendo
+que o id3 esta a ter em conta so 2 classes
+
