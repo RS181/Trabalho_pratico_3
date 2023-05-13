@@ -4,7 +4,6 @@ class ROOTNode {
     Map <String ,Set<Integer>> class_indice ;               //Mapa (class -> {indice's} )
     Map<String,Map<String,Set<Integer>>> var_class_ind;     //Mapa (var -> (class -> {indice's}) )  
     double Entropia_R;                                      //Contem a entropia do no atual 
-    double Gain_R;                                          //ganho de informacao neste no
     // ArrayList <ROOTNode> filhos;                        //filhos (caso existam de um no)
 
     ArrayList<String[]> Example_Population;                 //Populacao de exemplo 
@@ -12,6 +11,8 @@ class ROOTNode {
 
     Coluna[] colunas;                                       // contem todas as colunas 
 
+    String name_var;                                        //Contem o nome da variavel que este no esta a representar
+    Coluna col;                                             //Contem os dados da coluna atual (usamos quando queremos descobrir o best splitting atribute)
     ROOTNode(){
 
     }
@@ -19,6 +20,18 @@ class ROOTNode {
     // Construtor de um no folha 
     ROOTNode(String nome_class){
         name_col = nome_class;
+    }
+
+    //Construtor de um no "auxiliar" , para verficar qual e o best spliting node
+    
+    //todo (CRIAR ESTE CONSTRUTOR PARA OS NOS QUE VAMOS USAR PARA AUXILIAR A ESCOLHA DO 
+    //todo do best splitting node)
+    ROOTNode(String name_var,Coluna col,ArrayList<String[]> new_examples,ArrayList<String> new_attributes){
+        this.name_var = name_var;
+        System.out.println(this.name_var);
+
+        //todo criar um iniatilize parecido ao de baixo mas que nao procura
+        //todo no array de colunas e depois fazer o calculo de entropia
     }
 
     // Construtor de um no normal
@@ -39,6 +52,10 @@ class ROOTNode {
         // Create_Decisions_Nodes();    //esta no backup
 
         // Calculate_Information_Gain();  esta no backup 
+    }
+    @Override
+    public String toString(){
+        return name_col;
     }
 
     void Print_Class_Examples(){     //Imprime o mapa com (class -> Indice dos exemplos)
@@ -87,16 +104,16 @@ class ROOTNode {
 
         for (String s : class_indice.keySet() )
             total += class_indice.get(s).size();
-        System.out.println("Calculo da entropia RN da coluna "+ name_col);
-        System.out.println("    Total exemplos : " + total);
-        System.out.println("    Numero de classes: " + nr_classes); 
+        // System.out.println("Calculo da entropia da coluna "+ name_col);
+        // System.out.println("    Total exemplos : " + total);
+        // System.out.println("    Numero de classes: " + nr_classes); 
 
         //Calculo da entropia
         String calc = "";
         for (String s : class_indice.keySet()){
             calc += "(-(" + class_indice.get(s).size() + "/" + total + ")log2(" + class_indice.get(s).size() + "/" + total + ")) * ";
             Entropia_R -= (double)(class_indice.get(s).size()/ (double)total) *log2((double)(class_indice.get(s).size() / (double)total));
-            System.out.println("    " +calc + " = " + Entropia_R) ;
+            // System.out.println("    " +calc + " = " + Entropia_R) ;
         }
         System.out.println("    Valor de entropia do no atual = " + Entropia_R);
     }

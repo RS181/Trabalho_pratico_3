@@ -6,7 +6,6 @@ public class Main{
     static ArrayList<String[]> Examples = new ArrayList<>();            //Guarda os exemplos 
     static int Example_size;                                            //Tamanho de cada exemplo
     static Set<String> Classes = new HashSet<>();                       //Classes diferentes que existem no DataSet
-    static Tabela tabela;                                               //Estrutura de dados auxiliar (ver classe para perceber o que contem)
 
     public static void Read_csv(String name) throws Exception{
         File file1 = new File(name);
@@ -51,13 +50,67 @@ public class Main{
         }
         System.out.println("Atributo nao existe ou nome de atributo errado");
         return -1;
-
     }
 
+    public static int Nr_classes(ArrayList<String[]> examples , ArrayList<String> attributes){
+        Set<String> classes = new HashSet<>();
+        int indice = examples.get(0).length-1;
+        // System.out.println("Target attribute = " + attributes.get(indice));
+
+        for (String[] e : examples)
+            classes.add(e[indice]);
+        
+        // System.out.println(classes);
+
+
+        return classes.size();
+    } 
+
+    public static String Most_Common(ArrayList<String[]> examples ){
+        int indice = examples.get(0).length-1;
+        Map <String,Integer> m = new HashMap<>();
+        
+        for (String[] e : examples){
+            if (m.get(e[indice]) == null)   m.put(e[indice],1);
+            else    m.put(e[indice],m.get(e[indice]) + 1); 
+        }
+        
+        System.out.println(m);
+        int most = 0;
+        String ans = "";
+        
+        for (String k : m.keySet())
+            if (m.get(k) > most){
+                ans = k;
+                most = m.get(k);
+            }
+
+        return ans;
+    }
 
     public static ROOTNode ID3(ArrayList<String[]> examples,String Target_Attribute,ArrayList<String> attributes ){
         ROOTNode root = new ROOTNode();
 
+        //examples so tem uma classe
+        if (Nr_classes(examples, attributes) == 1)
+            return new ROOTNode(examples.get(0)[examples.get(0).length-1]);
+        
+        //nao temos mais atributos (attributes.size() == 2 ,ID e class)
+        if (attributes.size() == 2)
+            return new ROOTNode(Most_Common(examples));
+        
+        //Caso "geral"        
+        else {
+            Tabela t =  new Tabela (examples.size()-1,examples,attributes);
+            /* 
+            for (Coluna c : t.colunas){
+                if (c != null)  
+                    c.Pretty_Print();
+            }
+            */
+            //TODO implementar a parte de  descobrir o melhor atributo 
+
+        }
 
         return root; 
     }
@@ -68,13 +121,8 @@ public class Main{
         
         get_Classes();
         
-        //Inicializamos a estrutura de dados auxiliar com os exemplos a atributos iniciais
-        tabela = new Tabela(Example_size-1,Examples,Attributes);
-        for (Coluna  c : tabela.colunas){
-            if (c != null)
-                c.Pretty_Print();
-        }
+        
         //Implementar o id3 aqui
-        ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes));
+        System.out.println("->"+ ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes)));
     }
 }
