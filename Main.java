@@ -121,30 +121,33 @@ public class Main{
         return ans;
     }
 
-    public static ROOTNode ID3(ArrayList<String[]> examples,String Target_Attribute,ArrayList<String> attributes ){
+    public static ROOTNode ID3(ArrayList<String[]> examples,String Target_Attribute,ArrayList<String> attributes,String Ident ){
         ROOTNode root = new ROOTNode();
 
         //examples so tem uma classe
         if (Nr_classes(examples, attributes) == 1){
             // System.out.println("entrei aqui");
+            System.out.println(Ident + "Class :" + examples.get(0)[examples.get(0).length-1] + " " + examples.size());
             return new ROOTNode(examples.get(0)[examples.get(0).length-1]);
         }
         
         //nao temos mais atributos (attributes.size() <= 2 ,ID e class)
-        if (attributes.size() <= 2)
+        if (attributes.size() <= 2){
+            System.out.println(Ident+"Class : " + Most_Common(examples));
             return new ROOTNode(Most_Common(examples));
+        }
         
         //Caso "geral"        
         else {
             //* Best splitting attribute */
             Tabela t =  new Tabela (attributes.size()-1,new ArrayList<>(examples), new ArrayList<>(attributes));
-            System.out.println("-----------------");
+            /*System.out.println("-----------------");
             for (String[] e : examples)
                 System.out.println(Arrays.toString(e));  
-            System.out.println("-----------------");
+            System.out.println("-----------------");*/
 
             String A = t.best_splitting_attribute;
-            System.out.println("->" + A);
+            System.out.println(Ident+"Atributo " + A);
             
 
             root = new ROOTNode(A,t.colunas,examples,attributes);
@@ -163,10 +166,11 @@ public class Main{
                 }
 
             // System.out.println("=>" + coluna.m);
-            System.out.println("=> " + root.var_class_ind);
+            // System.out.println("=> " + root.var_class_ind);
             for (String var : root.var_class_ind.keySet()){
                 //? System.out.println(var + " " + root.var_class_ind.get(var));
-                System.out.println( "   "+root.name_col +" " + var + " " + root.var_class_ind.get(var));
+                // System.out.println("variavel :" + var);
+                // ? System.out.println( "   "+root.name_col +" " + var + " " + root.var_class_ind.get(var));
                 ArrayList<String[]> new_examples = new ArrayList<>();
                 ArrayList<String> new_attributes = new ArrayList<>();
 
@@ -223,6 +227,7 @@ public class Main{
                 if (new_examples.size() == 0){
                     //criamos um leaf node com label = Most common class in examples
                     //! neste caso colocamos no branch o lable em leaf_class
+                    System.out.println(Ident + "      " + var + ": Class" + Most_Common(examples) + " " +root.var_class_ind.get(var).size() ); 
                     for (ROOTNode f : root.filhos){
                         if (f.name_var.equals(var)) 
                             f.name_col = Most_Common(examples);
@@ -230,9 +235,10 @@ public class Main{
                 }
                 else {
                     // "Debaixo" deste branch adicionamos a subtree respetiva
+                    System.out.println(Ident +"      " + var + ":");
                     for (ROOTNode f : root.filhos){
                         if (f.name_var.equals(var))
-                            f.filhos.add(ID3(new ArrayList<>(new_examples),Target_Attribute,new ArrayList<>(new_attributes)));
+                            f.filhos.add(ID3(new ArrayList<>(new_examples),Target_Attribute,new ArrayList<>(new_attributes),Ident + "         "));
                     }
                 }
 
@@ -251,6 +257,6 @@ public class Main{
         
         
         //Implementar o id3 aqui
-        System.out.println("ID3 :"+ ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes)));
+        ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
     }
 }
