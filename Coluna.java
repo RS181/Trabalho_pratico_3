@@ -5,6 +5,8 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
     private Map<String,Map<String,String>> mapa_coluna;   // variavel -> (classe -> indice's do's exemplos)
     Map<String,Map<String,Set<Integer>>> m;               //variavel -> (class  -> {indece's do's exemplos}
     
+    Coluna(){}
+
     Coluna (String nome,ArrayList<String> col,ArrayList<String[]> examples,int nr_col){
         this.nome = nome;
         mapa_coluna = new HashMap<>();

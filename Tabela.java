@@ -8,6 +8,8 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
     ArrayList<String> attributes; // atributos(colunas) que vamos ter em conta
     Coluna[] colunas; // colunas
 
+    String best_splitting_attribute;        //guarda o nome do melhor splitting attribute
+
     Tabela(int numero_colunas, ArrayList<String[]> examples, ArrayList<String> attributes) {
         this.attributes = attributes;
         this.examples = examples;
@@ -15,7 +17,6 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
         colunas = new Coluna[numero_colunas];
         // for (String [] s : examples)
         // System.out.println(Arrays.toString(s));
-
         Iniatialize();
         Find_Best_Splitting_Attribute();
     }
@@ -27,6 +28,7 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
                 col.add(examples.get(i)[j]);
             }
             colunas[j - 1] = new Coluna(attributes.get(j), col, examples, numero_colunas);
+
         }
     }
 
@@ -35,7 +37,7 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
             if (attributes.get(i).equals(attribute))
                 return i;
         }
-        System.out.println("Atributo nao existe ou nome de atrib    uto errado");
+        System.out.println("Atributo nao existe ou nome de atributo errado");
         return -1;
     }
     
@@ -66,16 +68,17 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
     
 
     void Find_Best_Splitting_Attribute() {
-        //Objetivo e criar os descedente de um no e calcular 
-        //o best splitting node
-        
-        System.out.println("=============");
+        //Objetivo e criar os descedente de um no e determinar 
+        //o best splitting attribute
+        double Best_Entropy = Double.MAX_VALUE;
+
+        // ? System.out.println("=============");
         for (int k = 0 ; k < colunas.length ; k++){
             if (colunas[k] == null) break;
             Coluna aux = colunas[k];
             //No root com atributo aux.nome
             ROOTNode n = new ROOTNode(aux.nome, colunas, examples, attributes);
-            System.out.println(n.name_col);
+            // ? System.out.println("nome do atributo atual : " + n.name_col);
             int col_to_remove = getPos_col(n.name_col);
 
         
@@ -106,30 +109,31 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
                 //Atualizamos new_examples (passa a conter apenas os exemplos associados a var)
                 Filter_Examples(indices_remove,new_examples,examples);
 
-                // for (String [] s :new_examples) 
-                    // System.out.println(Arrays.toString(s));
+                // ? for (String [] s :new_examples) 
+                    // ? System.out.println(Arrays.toString(s));
 
                 filhos.add(new ROOTNode(var,aux,new_examples,new_attributes));
 
-                System.out.println();
+                // ? System.out.println();
             }
 
-            System.out.println("=============");
+
+            //todo Confirmar se e assim que decidimos o melhor atributo
+            //todo eu escolhi o no cujos filhos tem menor soma de entropia
+            //! CONFIRMAR
+            double Cur_Gain = -1;
+            for (ROOTNode sons : filhos)
+                Cur_Gain += sons.Entropia_R;
+            
+            if (Cur_Gain < Best_Entropy){
+                Best_Entropy = Cur_Gain;
+                best_splitting_attribute = n.name_col;
+            }
+            // System.out.println("Soma da entropia dos filhos : "+ Cur_Gain);
+
+            // ? System.out.println("=============");
 
         }
         
-        /*
-         * new_attributes.remove(col_to_remove); //remove a coluna nos atributos
-        
-        // System.out.println("new_attributes " + new_attributes);
-
-        for (int i = 0 ; i < examples.size() ; i++){    //remove a coluna nos exemplos
-            examples.remove(i);
-            examples.add(i,Remove_Col_From_Examples(new_examples.get(i), col_to_remove));
-        }
-
-        // for (String [] s :examples) 
-            // System.out.println(Arrays.toString(s));
-         */
     }
 }

@@ -4,7 +4,7 @@ class ROOTNode {
     Map <String ,Set<Integer>> class_indice ;               //Mapa (class -> {indice's} )
     Map<String,Map<String,Set<Integer>>> var_class_ind;     //Mapa (var -> (class -> {indice's}) )  
     double Entropia_R;                                      //Contem a entropia do no atual 
-    // ArrayList <ROOTNode> filhos;                        //filhos (caso existam de um no)
+    ArrayList <ROOTNode> filhos;                        //filhos (caso existam de um no)
 
     ArrayList<String[]> Example_Population;                 //Populacao de exemplo 
     ArrayList<String> Original_attributes;                  //atributos ou colunas
@@ -13,6 +13,8 @@ class ROOTNode {
 
     String name_var;                                        //Contem o nome da variavel que este no esta a representar
     Coluna col;                                             //Contem os dados da coluna atual (usamos quando queremos descobrir o best splitting atribute)
+    
+    String leaf_class;                                      // no folha Contem o nome da classe mais comum
     ROOTNode(){
 
     }
@@ -28,10 +30,16 @@ class ROOTNode {
     //todo do best splitting node)
     ROOTNode(String name_var,Coluna col,ArrayList<String[]> new_examples,ArrayList<String> new_attributes){
         this.name_var = name_var;
-        System.out.println(this.name_var);
+        this.col = col;
+        filhos = new ArrayList<>();
+        
+        class_indice =  col.m.get(name_var);        //Associa o mapa class -> indice
+        
+        Example_Population = new ArrayList<>(new_examples);
+        Original_attributes = new ArrayList<>(new_attributes);
+        // ? System.out.print(this.name_var  + " -> " + class_indice + "\n");
+        Calculate_Entropia();
 
-        //todo criar um iniatilize parecido ao de baixo mas que nao procura
-        //todo no array de colunas e depois fazer o calculo de entropia
     }
 
     // Construtor de um no normal
@@ -43,7 +51,7 @@ class ROOTNode {
         this.Original_attributes = Original_attributes; 
         
         class_indice = new HashMap<>();
-        // filhos = new ArrayList<>();
+        filhos = new ArrayList<>();
 
         Iniatialize();
         // Print_Class_Examples();
@@ -115,6 +123,6 @@ class ROOTNode {
             Entropia_R -= (double)(class_indice.get(s).size()/ (double)total) *log2((double)(class_indice.get(s).size() / (double)total));
             // System.out.println("    " +calc + " = " + Entropia_R) ;
         }
-        System.out.println("    Valor de entropia do no atual = " + Entropia_R);
+        // ?  System.out.println("    Valor de entropia do no atual = " + Entropia_R);
     }
 }
