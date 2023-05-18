@@ -32,7 +32,7 @@ public class Main{
         }
         sc.close();
         
-        //! NAO ESTAMOS A TER EM CONTA O ID (primeira coluna do csv)!!!!
+        //! NAO ESTAMOS A TER EM CONTA O ID (1o. coluna do csv)!!!!
         int i = 1;
         // for (String[] example : Examples){
             // System.out.println("Exemplo " + i + ": " + Arrays.toString(example));
