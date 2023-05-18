@@ -1,4 +1,6 @@
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.*;
 
 class Tabela { // Representar a estrutura de dados auxiliar para calcular a entropia
@@ -70,15 +72,15 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
     void Find_Best_Splitting_Attribute() {
         //Objetivo e criar os descedente de um no e determinar 
         //o best splitting attribute
-        double Best_Entropy = Double.MAX_VALUE;
+        double Best_Entropy = Double.MIN_VALUE;
 
-        // ? System.out.println("=============");
+        // ?System.out.println("=============");
         for (int k = 0 ; k < colunas.length ; k++){
             if (colunas[k] == null) break;
             Coluna aux = colunas[k];
-            //No root com atributo aux.nome
+            //No root com  o atributo para qual estamos a calcular a entropia 
             ROOTNode n = new ROOTNode(aux.nome, colunas, examples, attributes);
-            // ? System.out.println("nome do atributo atual : " + n.name_col);
+            //  ?System.out.println("nome do atributo atual : " + n.name_col);
             int col_to_remove = getPos_col(n.name_col);
 
         
@@ -114,26 +116,41 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
 
                 filhos.add(new ROOTNode(var,aux,new_examples,new_attributes));
 
-                // ? System.out.println();
+                // System.out.println();
             }
 
 
             //todo Confirmar se e assim que decidimos o melhor atributo
-            //todo eu escolhi o no cujos filhos tem menor soma de entropia
             //! CONFIRMAR
-            double Cur_Gain = -1;
-            for (ROOTNode sons : filhos)
-                Cur_Gain += sons.Entropia_R;
             
-            if (Cur_Gain < Best_Entropy){
+            double Cur_Gain = n.Entropia_R;     //ver formula de gain slide 29 (arvores de decisao)
+            // ? System.out.println("Entropia pai = " + n.Entropia_R);
+            int total = n.Example_Population.size();
+            // ? System.out.println("Total " + total);
+            for (ROOTNode sons : filhos){
+                //Nome da variavel , "tabela" auxiliar associada e a entropia dessa variavel
+                // ?System.out.println(sons.name_var + " " + sons.class_indice + " " + sons.Entropia_R);
+                int size_son = sons.Example_Population.size();
+                // ?System.out.println("size of son = " +size_son);
+
+                Cur_Gain -= ((double)size_son/(double)total)*sons.Entropia_R;           //! segui a formula do slide 29
+            }
+            //Arredondamos Cur_gain com 3 casas decimais
+            Cur_Gain = Math.round(Cur_Gain*1e3) / 1e3;
+
+            // ?System.out.println("Current gain = " + Cur_Gain);
+            if (Cur_Gain > Best_Entropy){
                 Best_Entropy = Cur_Gain;
                 best_splitting_attribute = n.name_col;
             }
-            // System.out.println("Soma da entropia dos filhos : "+ Cur_Gain);
 
-            // ? System.out.println("=============");
+            // System.out.println();
+
+            // System.out.println("=============");
+            // System.out.println(Best_Entropy);
+            // System.out.println("=============");
 
         }
-        
+
     }
 }

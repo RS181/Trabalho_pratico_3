@@ -6,6 +6,7 @@ public class Main{
     static ArrayList<String[]> Examples = new ArrayList<>();            //Guarda os exemplos 
     static int Example_size;                                            //Tamanho de cada exemplo
     static Set<String> Classes = new HashSet<>();                       //Classes diferentes que existem no DataSet
+    static Map<String,Set<String>> atributo_variavel;                   //Guarda os pares atributo -> variaveis (iniciais,serve para ter impressao correta)
 
     public static void Read_csv(String name) throws Exception{
         File file1 = new File(name);
@@ -17,7 +18,7 @@ public class Main{
         for (String attribute : aux)
             Attributes.add(attribute);
         
-        System.out.println("Atributos :" + Attributes );
+        // System.out.println("Atributos :" + Attributes );
 
         //Leitura e armazenamento de Exemplos
         Example_size = Attributes.size();
@@ -32,10 +33,10 @@ public class Main{
         
         //! NAO ESTAMOS A TER EM CONTA O ID (primeira coluna do csv)!!!!
         int i = 1;
-        for (String[] example : Examples){
-            System.out.println("Exemplo " + i + ": " + Arrays.toString(example));
-            i++;
-        } 
+        // for (String[] example : Examples){
+            // System.out.println("Exemplo " + i + ": " + Arrays.toString(example));
+            // i++;
+        // } 
     }
     
     public static void get_Classes(){    //Coloca na variavel o lobal todas as classes diferentes
@@ -113,7 +114,7 @@ public class Main{
         String ans = "";
         
         for (String k : m.keySet())
-            if (m.get(k) > most){
+            if (m.get(k) >= most){
                 ans = k;
                 most = m.get(k);
             }
@@ -141,21 +142,23 @@ public class Main{
         else {
             //* Best splitting attribute */
             Tabela t =  new Tabela (attributes.size()-1,new ArrayList<>(examples), new ArrayList<>(attributes));
-            /*System.out.println("-----------------");
+            /*
+            System.out.println("-----------------");
             for (String[] e : examples)
                 System.out.println(Arrays.toString(e));  
-            System.out.println("-----------------");*/
+            System.out.println("-----------------");
+            */
 
             String A = t.best_splitting_attribute;
-            System.out.println(Ident+"Atributo " + A);
+
+            System.out.println(Ident+"Atributo " + A );
             
 
             root = new ROOTNode(A,t.colunas,examples,attributes);
-            // System.out.println(root.var_class_ind);
+            // ? System.out.println(root.var_class_ind);
       
             //*Fim  Best splitting attribute */
 
-            //* for each possible value vi of A  */
 
             Coluna coluna = new Coluna();      //Coluna que contem estruturas de dados com inf deste no
             for (Coluna c : t.colunas)
@@ -167,8 +170,30 @@ public class Main{
 
             // System.out.println("=>" + coluna.m);
             // System.out.println("=> " + root.var_class_ind);
+            
+            //* for each possible value vi of A  */
+
+            //! Caso "especial" em que o no atual nao tem algum das variaveis originais
+            if (root.var_class_ind.size() != atributo_variavel.get(root.name_col).size()){
+                
+                // * Percorremos o atributo_variavel (que contem todas as variaveis)
+                // * a procurar a variavel que nao esta a ser imprimida 
+                Set<String> temp =atributo_variavel.get(root.name_col);
+                // System.out.println(root.var_class_ind);
+                for (String v : temp){
+                    if (!root.var_class_ind.containsKey(v)){
+                        System.out.println(Ident + "      "  + v + ":");
+                        System.out.println(Ident + "         " + "Class :" + Most_Common(examples) + " " + examples.size()/2);
+                    }
+                    
+
+                }
+
+            }
+
             for (String var : root.var_class_ind.keySet()){
-                //? System.out.println(var + " " + root.var_class_ind.get(var));
+                
+                // System.out.println(var + " " + root.var_class_ind.get(var));
                 // System.out.println("variavel :" + var);
                 // ? System.out.println( "   "+root.name_col +" " + var + " " + root.var_class_ind.get(var));
                 ArrayList<String[]> new_examples = new ArrayList<>();
@@ -208,7 +233,7 @@ public class Main{
       
                 ROOTNode branch = new ROOTNode(var,coluna,new_examples, new_attributes);
                 
-                //* COnfirmacao se crio branch corretamente*/
+                //* Confirmacao se crio branch corretamente*/
                 /*
                 ? System.out.println("----------------");
                 ? System.out.println(branch.name_var);
@@ -226,7 +251,6 @@ public class Main{
                
                 if (new_examples.size() == 0){
                     //criamos um leaf node com label = Most common class in examples
-                    //! neste caso colocamos no branch o lable em leaf_class
                     System.out.println(Ident + "      " + var + ": Class" + Most_Common(examples) + " " +root.var_class_ind.get(var).size() ); 
                     for (ROOTNode f : root.filhos){
                         if (f.name_var.equals(var)) 
@@ -248,15 +272,49 @@ public class Main{
 
         return root; 
     }
+
+
+    public static void Inialtilize_atributes_var(){
+        atributo_variavel = new HashMap<>();
+
+        //percorre todos os atributos (exceto o ultimo, que o target attribute)
+        for (int i = 1 ; i < Attributes.size()-1 ; i++){
+            String Cur_Atr = Attributes.get(i);
+            // System.out.print(Cur_Atr + " = ");
+            
+            atributo_variavel.put(Cur_Atr, new HashSet<>());
+            
+            //percorre a coluna i de todos os exemplos e adiciona todas as variveis existentes nessa coluna (sem repetidos)
+            for (int j = 0 ; j < Examples.size() ; j++){
+                String[] Cur_Ex = Examples.get(j);
+                Set<String> aux = atributo_variavel.get(Cur_Atr);
+                aux.add(Cur_Ex[i]);
+                // System.out.print(Cur_Ex[i] + " ");
+            }
+            // System.out.println(atributo_variavel.get(Cur_Atr));
+            // System.out.println();
+        }
+
+    }
     
 
     public static void main(String[] args) throws Exception{
-        Read_csv(args[0]);
-        
-        get_Classes();
-        
-        
-        //Implementar o id3 aqui
-        ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
+        if (args[0].contains(".csv")){
+            Read_csv(args[0]);
+
+            get_Classes();
+            
+            Inialtilize_atributes_var();
+            // for (String at : atributo_variavel.keySet()){
+                // System.out.println( at + " = " + atributo_variavel.get(at));
+            // }
+            //Implementar o id3 aqui
+            ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
+        }
+        else {
+            System.out.println("ola");
+        }
+            
+    
     }
 }

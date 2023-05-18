@@ -112,7 +112,10 @@ class ROOTNode {
 
         for (String s : class_indice.keySet() )
             total += class_indice.get(s).size();
+        // System.out.println("===================");
         // System.out.println("Calculo da entropia da coluna "+ name_col);
+        // System.out.println("Calculo da entropia da coluna "+ name_var);
+// 
         // System.out.println("    Total exemplos : " + total);
         // System.out.println("    Numero de classes: " + nr_classes); 
 
@@ -123,6 +126,8 @@ class ROOTNode {
             Entropia_R -= (double)(class_indice.get(s).size()/ (double)total) *log2((double)(class_indice.get(s).size() / (double)total));
             // System.out.println("    " +calc + " = " + Entropia_R) ;
         }
-        // ?  System.out.println("    Valor de entropia do no atual = " + Entropia_R);
+        // System.out.println("    Valor de entropia do no atual = " + Entropia_R);
+        // System.out.println("===================");
+
     }
 }
