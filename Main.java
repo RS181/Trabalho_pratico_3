@@ -45,7 +45,7 @@ public class Main{
     }
 
     public static int getPos_col(String attribute){     //retorna o indice que corresponde a um dado atributo  (coluna)
-        for (int i = 0 ; i < Examples.size(); i++){
+        for (int i = 0 ; i < Attributes.size(); i++){
             if (Attributes.get(i).equals(attribute))
                 return i;
         }
@@ -299,6 +299,7 @@ public class Main{
     
 
     public static void main(String[] args) throws Exception{
+        //Para criar uma arvore de decisao dado o csv
         if (args[0].contains(".csv")){
             Read_csv(args[0]);
 
@@ -309,10 +310,78 @@ public class Main{
                 // System.out.println( at + " = " + atributo_variavel.get(at));
             // }
             //Implementar o id3 aqui
+            
+            //* Imprimimos informacao necessaria para adicionar um exemplo (nr de atributos e atributos em si)
+            System.out.print (Attributes.size() + " ");
+            for (String atr : Attributes)
+                System.out.print(atr + " ");
+            System.out.println();
+
             ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
         }
+        //Para adicionar exemplo
         else {
-            System.out.println("ola");
+            Scanner stdin = new Scanner(System.in);
+            Attributes = new ArrayList<>();
+
+            //Guarda-mos os atributos (para ajudar na categorizacao)
+            int nr_attributes = stdin.nextInt();
+            for (int i = 0 ; i < nr_attributes -1 ; i++)
+                Attributes.add(stdin.next());
+
+            stdin.nextLine();       //Apanha a classe
+            System.out.println(Attributes);
+            
+            Queue<String> Decision_tree = new  LinkedList<>();
+            while(stdin.hasNextLine()){
+                Decision_tree.add(stdin.nextLine());
+            }
+
+            //todo descobrir como fazer a parte de receber um exemplo e categoriza-lo
+            
+            
+            String[] teste_ex = {"X14","Yes","No","No","Yes","Some","$$$","No","Yes","French","0-10"};
+            
+            
+            String cur_At = "";
+            String value_example = "";
+            int ind_example = 0;
+
+            String cur_var = "";
+            while (! Decision_tree.isEmpty()){
+                String aux = Decision_tree.remove();
+                
+                //quando recebemos um atributo fazemos o seguinte
+                if (aux.contains("Atributo")){
+                    cur_At = aux.replaceAll("\\s", "");
+                    cur_At = cur_At.substring(8,cur_At.length()); 
+                    ind_example = getPos_col(cur_At);
+
+                    //todo criar no e respetivos sub nos
+                    //while (!Decision_tree.peek() .contains("Attribute"))
+                    //? System.out.println(cur_At);
+                    // ? System.out.println(getPos_col(cur_At));        
+                }
+
+                //quando recebemos uma variavel
+                else if (!aux.contains("Class")){
+                    cur_var = aux.replaceAll("\\s", "");
+                    cur_var = cur_var.substring(0,cur_var.length()-1);
+
+
+
+                    System.out.println(cur_var);
+                }
+                System.out.println(aux);
+            }
+
+
+
+            //!Ideia para catogorizar os exemplos:
+            //*  ->depois de ler o csv e colocar os dados em examples e attributos
+            //*  pegar nas colunas que sao numericas e descobrir o valor maximo e minimo
+            //*  e dividir os valores por <= e > e substituir na propria coluna 
+
         }
             
     
