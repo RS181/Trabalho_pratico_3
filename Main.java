@@ -357,8 +357,11 @@ public class Main{
                     cur_At = cur_At.substring(8,cur_At.length()); 
                     ind_example = getPos_col(cur_At);
 
-                    //todo criar no e respetivos sub nos
+                    //todo criar no e respetivos filhos ()
                     //while (!Decision_tree.peek() .contains("Attribute"))
+                    
+                    //todo aproveitar este ciclo acima para ir criando os nos
+                    
                     //? System.out.println(cur_At);
                     // ? System.out.println(getPos_col(cur_At));        
                 }
