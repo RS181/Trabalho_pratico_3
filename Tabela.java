@@ -75,7 +75,11 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
         double Best_Entropy = Double.MIN_VALUE;
 
         // ?System.out.println("=============");
-        for (int k = 0 ; k < colunas.length ; k++){
+        if (colunas.length == 2){
+            best_splitting_attribute =  colunas[0].nome;
+            return;
+        }
+        for (int k = 0 ; k < colunas.length; k++){
             if (colunas[k] == null) {
                 break;
             }
@@ -149,7 +153,7 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
             // System.out.println();
 
             // System.out.println("=============");
-            System.out.println("->" + best_splitting_attribute + " = " + Best_Entropy);
+            // System.out.println("->" + best_splitting_attribute + " = " + Best_Entropy);
             // System.out.println("=============");
 
         }

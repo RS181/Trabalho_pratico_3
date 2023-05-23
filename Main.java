@@ -149,7 +149,15 @@ public class Main{
             */
 
             String A = t.best_splitting_attribute;
-
+            if (A == null){
+                // for (String[] e : t.examples){
+                    // System.out.println(Arrays.toString(e));
+                // }
+                for (Coluna c : t.colunas){
+                    System.out.println("->" + c.nome + t.colunas.length);
+                }
+                
+            }
             System.out.println(Ident+"Atributo " + A );
             
 
@@ -187,8 +195,7 @@ public class Main{
                         //!Cria o filho de root para esse "caso especial"
 
 
-                        //todo VERIFICAR SE NAO CAUSA ERROS NA GERACAO
-                        //todo DA ARVORE DE DECISAO
+                        //todo VERIFICAR SE NAO CAUSA ERROS NA GERACAO DA ARVORE DE DECISAO
                         ROOTNode aux = new ROOTNode(v,0);
                         aux.filhos.add(new ROOTNode(Most_Common(examples)));
                         root.filhos.add(aux);
