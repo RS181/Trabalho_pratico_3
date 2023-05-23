@@ -24,8 +24,16 @@ class ROOTNode {
         name_col = nome_class;
     }
 
+    //Contrutor "especial para lidar com casos "especiasi" ler ID3 que esta na linha 176
+    ROOTNode(String name_var,int dif){
+        //dif nao faz nada , e so para distinguir do construtor de cima
+        filhos = new ArrayList<>();
+        this.name_var =  name_var;
+    }
     //Construtor de um no "auxiliar" , para verficar qual e o best spliting node
     
+
+
     //todo (CRIAR ESTE CONSTRUTOR PARA OS NOS QUE VAMOS USAR PARA AUXILIAR A ESCOLHA DO 
     //todo do best splitting node)
     ROOTNode(String name_var,Coluna col,ArrayList<String[]> new_examples,ArrayList<String> new_attributes){

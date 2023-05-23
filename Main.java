@@ -127,7 +127,6 @@ public class Main{
 
         //examples so tem uma classe
         if (Nr_classes(examples, attributes) == 1){
-            // System.out.println("entrei aqui");
             System.out.println(Ident + "Class :" + examples.get(0)[examples.get(0).length-1] + " " + examples.size());
             return new ROOTNode(examples.get(0)[examples.get(0).length-1]);
         }
@@ -184,10 +183,20 @@ public class Main{
                     if (!root.var_class_ind.containsKey(v)){
                         System.out.println(Ident + "      "  + v + ":");
                         System.out.println(Ident + "         " + "Class :" + Most_Common(examples) + " " + examples.size()/2);
+
+                        //!Cria o filho de root para esse "caso especial"
+
+
+                        //todo VERIFICAR SE NAO CAUSA ERROS NA GERACAO
+                        //todo DA ARVORE DE DECISAO
+                        ROOTNode aux = new ROOTNode(v,0);
+                        aux.filhos.add(new ROOTNode(Most_Common(examples)));
+                        root.filhos.add(aux);
+
                     }
                     
-
                 }
+                
 
             }
 
@@ -306,10 +315,7 @@ public class Main{
             get_Classes();
             
             Inialtilize_atributes_var();
-            // for (String at : atributo_variavel.keySet()){
-                // System.out.println( at + " = " + atributo_variavel.get(at));
-            // }
-            //Implementar o id3 aqui
+            
             
             //* Imprimimos informacao necessaria para adicionar um exemplo (nr de atributos e atributos em si)
             System.out.print (Attributes.size() + " ");
@@ -317,76 +323,82 @@ public class Main{
                 System.out.print(atr + " ");
             System.out.println();
 
-            ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
-        }
-        //Para adicionar exemplo
-        else {
-            Scanner stdin = new Scanner(System.in);
-            Attributes = new ArrayList<>();
-
-            //Guarda-mos os atributos (para ajudar na categorizacao)
-            int nr_attributes = stdin.nextInt();
-            for (int i = 0 ; i < nr_attributes -1 ; i++)
-                Attributes.add(stdin.next());
-
-            stdin.nextLine();       //Apanha a classe
-            System.out.println(Attributes);
-            
-            Queue<String> Decision_tree = new  LinkedList<>();
-            while(stdin.hasNextLine()){
-                Decision_tree.add(stdin.nextLine());
-            }
-
-            //todo descobrir como fazer a parte de receber um exemplo e categoriza-lo
-            
-            
-            String[] teste_ex = {"X14","Yes","No","No","Yes","Some","$$$","No","Yes","French","0-10"};
-            
-            
-            String cur_At = "";
-            String value_example = "";
-            int ind_example = 0;
-
-            String cur_var = "";
-            while (! Decision_tree.isEmpty()){
-                String aux = Decision_tree.remove();
-                
-                //quando recebemos um atributo fazemos o seguinte
-                if (aux.contains("Atributo")){
-                    cur_At = aux.replaceAll("\\s", "");
-                    cur_At = cur_At.substring(8,cur_At.length()); 
-                    ind_example = getPos_col(cur_At);
-
-                    //todo criar no e respetivos filhos ()
-                    //while (!Decision_tree.peek() .contains("Attribute"))
-                    
-                    //todo aproveitar este ciclo acima para ir criando os nos
-                    
-                    //? System.out.println(cur_At);
-                    // ? System.out.println(getPos_col(cur_At));        
-                }
-
-                //quando recebemos uma variavel
-                else if (!aux.contains("Class")){
-                    cur_var = aux.replaceAll("\\s", "");
-                    cur_var = cur_var.substring(0,cur_var.length()-1);
-
-
-
-                    System.out.println(cur_var);
-                }
-                System.out.println(aux);
-            }
-
-
-
-            //!Ideia para catogorizar os exemplos:
+            // todo  tentar fazer o que esta descrito abaixo
             //*  ->depois de ler o csv e colocar os dados em examples e attributos
             //*  pegar nas colunas que sao numericas e descobrir o valor maximo e minimo
             //*  e dividir os valores por <= e > e substituir na propria coluna 
 
-        }
+            //*criamos a arvore de decisao
+            ROOTNode n = ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
+
+
+            //*Categorizacao de  um exemplo
+            //todo Acabar a parte de categorizar um exemplo
             
-    
+            /* 
+            String[] teste_ex = {"X14","Yes","No","Yes","Yes","Full","$$$","No","Yes","Thai","0-10"};
+            
+            //Ciclo que percorre a arvore de decisao para categorizar um novo exemplo
+            ROOTNode cur = n;
+            int ind = getPos_col(cur.name_col);            
+            Attributes.remove(ind);
+            int i =0;
+
+            outerloop:
+            while (true){
+
+                if (cur.name_col != null)
+                    System.out.println("i : " + i + " = "+  cur.name_col); 
+                if (cur.name_var != null)
+                    System.out.println("i : " + i + " = "+  cur.name_var);      
+                   
+                for (ROOTNode f : cur.filhos){
+                    if (f.name_var != null){
+                        // if (i == 5){
+                            //System.out.printf("var = %s e teste[%d] = %s\n",f.name_var,i,teste_ex[ind]);
+                        // }
+                        if (f.name_var.equals(teste_ex[ind])){
+                            System.out.printf("nosso exemplo na coluna %s  = %s\n",cur.name_col,teste_ex[ind]);
+
+                            //Escolhemos o respetivo filho na arvore de decisao
+                            cur = f;
+
+                            //Atualizamos teste exemplo (removendo o argumento que encontramos)
+                            teste_ex = remove(teste_ex, ind);
+
+                            break;
+                        }
+                    }
+                    else if (Classes.contains(f.name_col)){
+                        System.out.printf("exemplo e categorizado como: %s\n",f.name_col);
+                        break outerloop;
+                    }
+                    else if (f.name_col != null){
+                        //?System.out.println(f.name_col);
+                        
+                        //Escolhemos o respetivo filho na arvore de decisao
+                        cur = f;
+                        
+                        
+
+                        //Atualizamos o indice 
+                        ind = getPos_col(f.name_col);
+                        
+                        //Removemos o atributo nesse indice
+                        Attributes.remove(ind);
+                        
+                        break;
+                        
+                    }
+                    
+                }  
+                //Serve ajudar a ver os "passos" que o 
+                // nosso exemplo segue na arvore de decisao 
+                i++;
+                if (i == 8) break;
+            }
+            */
+        }
+                
     }
 }

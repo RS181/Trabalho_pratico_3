@@ -1,0 +1,32 @@
+6 ID Weather Temp Humidity Windy Play 
+Atributo Temp
+      68:
+         Class :yes 1
+      69:
+         Class :yes 1
+      80:
+         Class :no 1
+      70:
+         Class :yes 1
+      81:
+         Class :yes 1
+      71:
+         Class :no 1
+      83:
+         Class :yes 1
+      72:
+         Atributo Weather
+               rainy:
+                  Class :yes 1
+               overcast:
+                  Class :yes 1
+               sunny:
+                  Class :no 1
+      85:
+         Class :no 1
+      64:
+         Class :yes 1
+      75:
+         Class :yes 2
+      65:
+         Class :no 1
