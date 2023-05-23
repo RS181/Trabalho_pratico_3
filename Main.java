@@ -158,7 +158,7 @@ public class Main{
       
             //*Fim  Best splitting attribute */
 
-
+            // System.out.println(attributes);
             Coluna coluna = new Coluna();      //Coluna que contem estruturas de dados com inf deste no
             for (Coluna c : t.colunas)
                 if ( c != null){
@@ -306,6 +306,149 @@ public class Main{
 
     }
     
+    //verifica se existem campos inteiros para descritizar
+    public static int[] int_to_discretiz(){
+        String[] aux = Examples.get(0);
+        int i = 0;
+        //guarda os indices das colunas que contem variaveis inteiras
+        ArrayList<Integer> ind = new ArrayList<>();
+        boolean cond = true;
+        for (String s : aux ){
+            cond = true;
+            if (i != 0){
+                // System.out.println(s );
+                try{
+                    Integer.valueOf(s); 
+                }catch(NumberFormatException e){
+                    cond = false;
+                }
+                if (cond == true){
+                    ind.add(i);
+                    // System.out.println(s + "->" + i);
+                }
+            }
+            i++;
+        }
+        // coloca os indices das colunas que e possivel fazer descritazacao
+        int ans[] = new int[ind.size()];
+        i = 0;
+        for (int v : ind){
+            ans[i] = v;
+            i++;
+        }
+        return ans;
+    }
+
+
+    //procura o maior e o menor valor inteiro dos  exemplos, na coluna indice
+    public static int[] Max_Min_Value_INT(int indice){
+        //ans[0] = min , ans[1] = max
+        int[] ans = new int[2];
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (String [] e : Examples){
+            int cur = Integer.valueOf(e[indice]);
+            min = Math.min(min,cur);
+            max = Math.max(max,cur);
+        }
+        //ans[0] = min , ans[1] = max
+        ans [0] = min;
+        ans [1] = max;
+        return ans;
+    }
+
+    //procura o maior e o menor valor dos  exemplos, na coluna indice
+    public static double[] Max_Min_Value_DOUBLE(int indice){
+        //ans[0] = min , ans[1] = max
+        double[] ans = new double[2];
+        double min = Double.MAX_VALUE;
+        double max = Double.MIN_VALUE;
+        for (String [] e : Examples){
+            double cur = Double.valueOf(e[indice]);
+            min = Math.min(min,cur);
+            max = Math.max(max,cur);
+        }
+        //ans[0] = min , ans[1] = max
+        ans [0] = min;
+        ans [1] = max;
+        return ans;
+    
+    }
+    //verifica se existem campos com virgula para descritizar
+    public static int[] double_to_discretiz(){
+        String[] aux = Examples.get(0);
+        int i = 0;
+        ArrayList<Integer> ind = new ArrayList<>();
+        boolean cond = true;
+        for (String s : aux ){
+            cond = true;
+            if (i != 0){
+                // System.out.println(s );
+                try{
+                    Double.valueOf(s); 
+                }catch(NumberFormatException e){
+                    cond = false;
+                }
+                if (cond == true){
+                    ind.add(i);
+                    // System.out.println(s + "->" + i);
+                }
+            }
+            i++;
+        }
+        //todo criar array com indices a discretizars(valores de i)
+        int ans[] = new int[ind.size()];
+        i = 0;
+        for (int v : ind){
+            ans[i] = v;
+            i++;
+        }
+
+        return ans;
+    }
+    //Discretiza as variaveis inteiras e com virgula
+    public static void discretize(){
+        //guarda as colunas que contem inteiros que podem ser descritizadas
+        int [] int_ind_to_discratize = int_to_discretiz();
+
+        for (int indice : int_ind_to_discratize){
+            //para cada coluna em indice 
+            //eu quero discretizar ()
+            int [] Min_Max = Max_Min_Value_INT(indice);
+            int middle = (Min_Max[1] + Min_Max[0])/2;
+
+            //fazemos a divisiao em cada exemplo em Example
+            // de <= middle e > middle 
+            for (String[] e : Examples){
+                if (Integer.valueOf(e[indice]) <= middle)
+                    e[indice] = "<="+middle;
+                else 
+                    e[indice] = ">"+middle;
+            }
+        }
+
+        //guarda as colunas que podem ser descritazadas
+        int [] double_int_to_discretize = double_to_discretiz();
+        // System.out.println(Arrays.toString(double_int_to_discretize));
+
+        for (int indice : double_int_to_discretize){
+            //para cada coluna em indice 
+            //eu quero discretizar 
+            double[] Min_Max = Max_Min_Value_DOUBLE(indice);
+            double middle = (Min_Max[1] + Min_Max[0])/2;
+            //fazemos a divisiao em cada exemplo em Example
+            // de <= middle e > middle 
+            for (String[] e : Examples){
+                if (Double.valueOf(e[indice]) <= middle)
+                    e[indice] = "<="+middle;
+                else 
+                    e[indice] = ">"+middle;
+            }
+        }
+
+
+    }
+
 
     public static void main(String[] args) throws Exception{
         //Para criar uma arvore de decisao dado o csv
@@ -313,10 +456,15 @@ public class Main{
             Read_csv(args[0]);
 
             get_Classes();
-            
+
+            //Discretiza se for possivel
+            discretize();
+
             Inialtilize_atributes_var();
             
-            
+
+
+
             //* Imprimimos informacao necessaria para adicionar um exemplo (nr de atributos e atributos em si)
             System.out.print (Attributes.size() + " ");
             for (String atr : Attributes)

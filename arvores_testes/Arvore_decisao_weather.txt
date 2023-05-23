@@ -1,3 +1,5 @@
+
+(Sem descretizacao)
 6 ID Weather Temp Humidity Windy Play 
 Atributo Temp
       68:
@@ -30,3 +32,22 @@ Atributo Temp
          Class :yes 2
       65:
          Class :no 1
+
+
+(Com descretizacao)
+6 ID Weather Temp Humidity Windy Play 
+Atributo Weather
+      rainy:
+         Atributo Windy
+               TRUE:
+                  Class :no 2
+               FALSE:
+                  Class :yes 3
+      overcast:
+         Class :yes 4
+      sunny:
+         Atributo Humidity
+               <=80:
+                  Class :yes 2
+               >80:
+                  Class :no 3

@@ -89,6 +89,39 @@ public class teste {
         return ans;
     }
 
+    //verifica se existem campos com virgula para descritizar
+    public static int[] double_to_discretiz(){
+        String[] aux = Examples.get(0);
+        int i = 0;
+        ArrayList<Integer> ind = new ArrayList<>();
+        boolean cond = true;
+        for (String s : aux ){
+            cond = true;
+            if (i != 0){
+                // System.out.println(s );
+                try{
+                    Double.valueOf(s); 
+                }catch(NumberFormatException e){
+                    cond = false;
+                }
+                if (cond == true){
+                    ind.add(i);
+                    // System.out.println(s + "->" + i);
+                }
+            }
+            i++;
+        }
+        //todo criar array com indices a discretizars(valores de i)
+        int ans[] = new int[ind.size()];
+        i = 0;
+        for (int v : ind){
+            ans[i] = v;
+            i++;
+        }
+
+        return ans;
+    }
+
     //procura o maior e o menor valor dos  exemplos, na coluna indice
     public static int[] Max_Min_Value(int indice){
         //ans[0] = min , ans[1] = max
@@ -106,15 +139,32 @@ public class teste {
         return ans;
     }
 
-    //Discretiza as variaveis
-    public static void discretiz(){
+    //procura o maior e o menor valor dos  exemplos, na coluna indice
+    public static double[] Max_Min_Value_DOUBLE(int indice){
+        //ans[0] = min , ans[1] = max
+        double[] ans = new double[2];
+        double min = Double.MAX_VALUE;
+        double max = Double.MIN_VALUE;
+        for (String [] e : Examples){
+            double cur = Double.valueOf(e[indice]);
+            min = Math.min(min,cur);
+            max = Math.max(max,cur);
+        }
+        //ans[0] = min , ans[1] = max
+        ans [0] = min;
+        ans [1] = max;
+        return ans;
+    }
+
+    //Discretiza as variaveis inteiras ou double
+    public static void discretize(){
         //guarda as colunas que podem ser descritizadas
-        int [] int_ind_to_discratize = int_to_discretiz();
+        int [] int_ind_to_discretize = int_to_discretiz();
 
-
-        for (int indice : int_ind_to_discratize){
+        //
+        for (int indice : int_ind_to_discretize){
             //para cada coluna em indice 
-            //eu quero discretizar ()
+            //eu quero discretizar 
             int [] Min_Max = Max_Min_Value(indice);
             int middle = (Min_Max[1] + Min_Max[0])/2;
 
@@ -127,18 +177,32 @@ public class teste {
                     e[indice] = ">"+middle;
             }
         }
-        // System.out.println(Arrays.toString(int_ind_to_discratize));
 
-        //discretizar inteiros e double em metodo sperados
+        //guarda as colunas que podem ser descritazadas
+        int [] double_int_to_discretize = double_to_discretiz();
+        // System.out.println(Arrays.toString(double_int_to_discretize));
 
-
+        for (int indice : double_int_to_discretize){
+            //para cada coluna em indice 
+            //eu quero discretizar 
+            double[] Min_Max = Max_Min_Value_DOUBLE(indice);
+            double middle = (Min_Max[1] + Min_Max[0])/2;
+            //fazemos a divisiao em cada exemplo em Example
+            // de <= middle e > middle 
+            for (String[] e : Examples){
+                if (Double.valueOf(e[indice]) <= middle)
+                    e[indice] = "<="+middle;
+                else 
+                    e[indice] = ">"+middle;
+            }
+        }
     }
 
     public static void main(String[] args) throws Exception{
         if (args[0].contains(".csv")){
             Read_csv(args[0]);
             
-        discretiz();
+        discretize();
         for (String []e : Examples){
             System.out.println(Arrays.toString(e));
         }

@@ -76,11 +76,13 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
 
         // ?System.out.println("=============");
         for (int k = 0 ; k < colunas.length ; k++){
-            if (colunas[k] == null) break;
+            if (colunas[k] == null) {
+                break;
+            }
             Coluna aux = colunas[k];
             //No root com  o atributo para qual estamos a calcular a entropia 
             ROOTNode n = new ROOTNode(aux.nome, colunas, examples, attributes);
-            //  ?System.out.println("nome do atributo atual : " + n.name_col);
+            //? System.out.println("nome do atributo atual : " + n.name_col);
             int col_to_remove = getPos_col(n.name_col);
 
         
@@ -137,17 +139,17 @@ class Tabela { // Representar a estrutura de dados auxiliar para calcular a entr
             }
             //Arredondamos Cur_gain com 3 casas decimais
             Cur_Gain = Math.round(Cur_Gain*1e3) / 1e3;
-
-            // ?System.out.println("Current gain = " + Cur_Gain);
             if (Cur_Gain > Best_Entropy){
+                
                 Best_Entropy = Cur_Gain;
                 best_splitting_attribute = n.name_col;
             }
+            
 
             // System.out.println();
 
             // System.out.println("=============");
-            // System.out.println(Best_Entropy);
+            System.out.println("->" + best_splitting_attribute + " = " + Best_Entropy);
             // System.out.println("=============");
 
         }

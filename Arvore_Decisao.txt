@@ -1,24 +1,47 @@
-12 ID Alt Bar Fri Hun Pat Price Rain Res Type Est Class 
-Atributo Pat
-      Some:
-         Class :Yes 4
-      None:
-         Class :No 2
-      Full:
-         Atributo Hun
-               No:
-                  Class :No 2
-               Yes:
-                  Atributo Type
-                        French:
-                           Class :Yes 2
-                        Burger:
-                           Class :Yes 1
-                        Italian:
-                           Class :No 1
-                        Thai:
-                           Atributo Fri
-                                 No:
-                                    Class :No 1
-                                 Yes:
-                                    Class :Yes 1
+6 ID sepallength sepalwidth petallength petalwidth class 
+->sepallength = 0.393
+->sepallength = 0.393
+->petallength = 0.721
+->petallength = 0.721
+Atributo petallength
+      >3.95:
+->sepallength = 0.104
+->sepallength = 0.104
+->petalwidth = 0.29
+         Atributo petalwidth
+               >1.3:
+->sepallength = 0.031
+->sepallength = 0.031
+                  Atributo sepallength
+                        <=6.1:
+->sepalwidth = 0.06
+                           Atributo sepalwidth
+                                 >3.2:
+                                    Class :Iris-versicolor 1
+                                 <=3.2:
+                                    Class : Iris-virginica
+                        >6.1:
+->sepalwidth = 0.015
+                           Atributo sepalwidth
+                                 >3.2:
+                                    Class : Iris-virginica
+                                 <=3.2:
+                                    Class : Iris-virginica
+               <=1.3:
+                  Class :Iris-versicolor 18
+      <=3.95:
+->null = 4.9E-324
+->sepalwidth = 0.226
+->sepalwidth = 0.226
+         Atributo sepalwidth
+               >3.2:
+                  Class :Iris-setosa 32
+               <=3.2:
+->null = 4.9E-324
+->petalwidth = 0.05
+                  Atributo petalwidth
+                        >1.3:
+                           Class :Iris-versicolor 1
+                        <=1.3:
+->null = 4.9E-324
+                           Atributo null
