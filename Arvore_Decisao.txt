@@ -32,3 +32,4 @@ Atributo petallength
                                     Class :Iris-setosa 14
                                  <=6.1:
                                     Class : Iris-setosa
+exemplo e categorizado como: Iris-setosa

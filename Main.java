@@ -8,6 +8,10 @@ public class Main{
     static Set<String> Classes = new HashSet<>();                       //Classes diferentes que existem no DataSet
     static Map<String,Set<String>> atributo_variavel;                   //Guarda os pares atributo -> variaveis (iniciais,serve para ter impressao correta)
 
+    /*
+     *Le um ficheiro csv (com o formato igual a um dos csv exemplos que temos)
+     *e coloca a informacao em Attributes  e Examples 
+     */
     public static void Read_csv(String name) throws Exception{
         File file1 = new File(name);
         Scanner sc = new Scanner(file1);
@@ -39,12 +43,14 @@ public class Main{
         // } 
     }
     
-    public static void get_Classes(){    //Coloca na variavel o lobal todas as classes diferentes
+    /*Coloca na variavel o lobal todas as classes diferentes*/
+    public static void get_Classes(){    
         for (String[] example : Examples)
             Classes.add(example[example.length-1]) ;
     }
 
-    public static int getPos_col(String attribute){     //retorna o indice que corresponde a um dado atributo  (coluna)
+    /*retorna o indice que corresponde a um dado atributo  (coluna) */
+    public static int getPos_col(String attribute){     
         for (int i = 0 ; i < Attributes.size(); i++){
             if (Attributes.get(i).equals(attribute))
                 return i;
@@ -53,6 +59,7 @@ public class Main{
         return -1;
     }
 
+    /*retorna o numero de "classes" que existem */
     public static int Nr_classes(ArrayList<String[]> examples , ArrayList<String> attributes){
         Set<String> classes = new HashSet<>();
         int indice = examples.get(0).length-1;
@@ -63,11 +70,10 @@ public class Main{
         
         // System.out.println(classes);
 
-
         return classes.size();
     } 
 
-    //remove a String em s que esta na posicoa indice
+    /*remove a String em s que esta na posicao indice*/
     public static String[] remove(String[] s,int indice){
         String[] n = new String[s.length-1];
         int i = 0;
@@ -86,9 +92,10 @@ public class Main{
 
     }
 
-
-    //Filtra os exemplos que estao associados
-    // a escolhe de um no e respetiva variavel
+    /* 
+     *Filtra os exemplos que estao associados
+     * a escolhe de um no e respetiva variavel
+    */
     public static void Filter_Examples(boolean[] indices_remove,int indice_col_remove,ArrayList<String[]> new_examples,ArrayList<String[]> old_examples){
         for (int i = 0 ; i < indices_remove.length ; i++){
             //se o exemplo pertence aos novos exemplos (nao e necessario remover-lo)
@@ -100,6 +107,7 @@ public class Main{
         }   
     }
 
+    /*Retorna a classe mais comum na lista de exemplos examples */
     public static String Most_Common(ArrayList<String[]> examples ){
         int indice = examples.get(0).length-1;
         Map <String,Integer> m = new HashMap<>();
@@ -122,6 +130,11 @@ public class Main{
         return ans;
     }
 
+
+    /*
+     * Executa o algoritmo ID3 (com algumas modificoes , para aceitar mais do
+     * que duas classes diferentes)
+     */
     public static ROOTNode ID3(ArrayList<String[]> examples,String Target_Attribute,ArrayList<String> attributes,String Ident ){
         ROOTNode root = new ROOTNode();
 
@@ -194,7 +207,6 @@ public class Main{
 
                         //!Cria o filho de root para esse "caso especial"
 
-
                         //todo VERIFICAR SE NAO CAUSA ERROS NA GERACAO DA ARVORE DE DECISAO
                         ROOTNode aux = new ROOTNode(v,0);
                         aux.filhos.add(new ROOTNode(Most_Common(examples)));
@@ -241,12 +253,12 @@ public class Main{
 
                 //Atualizamos new_examples (passa a conter apenas os exemplos associados a var)
                 Filter_Examples(indices_remove,col_to_remove,new_examples,examples);
-                
-                //? for (String [] s :new_examples) 
-                    // ?System.out.println(Arrays.toString(s));
+                /* 
+                ? for (String [] s :new_examples) 
+                    ? System.out.println(Arrays.toString(s));
 
-                // ?System.out.println(new_attributes);
-      
+                ? System.out.println(new_attributes);
+                */
                 ROOTNode branch = new ROOTNode(var,coluna,new_examples, new_attributes);
                 
                 //* Confirmacao se crio branch corretamente*/
@@ -262,7 +274,7 @@ public class Main{
                 ? System.out.println("----------------");
                  */
                 
-                //Adicionamos o branch ao no root que inicializamos acima
+                //Adicionamos o branch ao filhos do no root que inicializamos acima
                 root.filhos.add(branch);      
                
                 if (new_examples.size() == 0){
@@ -289,7 +301,10 @@ public class Main{
         return root; 
     }
 
-
+    /*
+     *inicializamos e colocamos os respetivos valores em attributo_variavel 
+     *(iniciais,serve para ter impressao correta)
+    */
     public static void Inialtilize_atributes_var(){
         atributo_variavel = new HashMap<>();
 
@@ -313,7 +328,10 @@ public class Main{
 
     }
     
-    //verifica se existem campos inteiros para descritizar
+    /*
+     *verifica se existem campos inteiros ,nos exemplos , para descritizar
+     *(Se nao conter nenhum , nao faz discretizacao nenhuma)
+     */
     public static int[] int_to_discretiz(){
         String[] aux = Examples.get(0);
         int i = 0;
@@ -347,7 +365,7 @@ public class Main{
     }
 
 
-    //procura o maior e o menor valor inteiro dos  exemplos, na coluna indice
+    /*procura o maior e o menor valor inteiro dos  exemplos, na coluna indice*/
     public static int[] Max_Min_Value_INT(int indice){
         //ans[0] = min , ans[1] = max
         int[] ans = new int[2];
@@ -364,7 +382,7 @@ public class Main{
         return ans;
     }
 
-    //procura o maior e o menor valor dos  exemplos, na coluna indice
+    /*procura o maior e o menor valor dos  exemplos, na coluna indice*/
     public static double[] Max_Min_Value_DOUBLE(int indice){
         //ans[0] = min , ans[1] = max
         double[] ans = new double[2];
@@ -381,7 +399,11 @@ public class Main{
         return ans;
     
     }
-    //verifica se existem campos com virgula para descritizar
+
+    /*
+     *verifica se existem  valores double nos exemplos  para descritizar
+     * (Se nao conter nenhum , nao faz discretizacao nenhuma)
+     */
     public static int[] double_to_discretiz(){
         String[] aux = Examples.get(0);
         int i = 0;
@@ -413,7 +435,8 @@ public class Main{
 
         return ans;
     }
-    //Discretiza as variaveis inteiras e com virgula
+
+    /*Discretiza,caso existam,nos exemplos as variaveis inteiras e com virgula*/
     public static void discretize(){
         //guarda as colunas que contem inteiros que podem ser descritizadas
         int [] int_ind_to_discratize = int_to_discretiz();
@@ -436,7 +459,6 @@ public class Main{
 
         //guarda as colunas que podem ser descritazadas
         int [] double_int_to_discretize = double_to_discretiz();
-        // System.out.println(Arrays.toString(double_int_to_discretize));
 
         for (int indice : double_int_to_discretize){
             //para cada coluna em indice 
@@ -478,10 +500,6 @@ public class Main{
                 System.out.print(atr + " ");
             System.out.println();
 
-            // todo  tentar fazer o que esta descrito abaixo
-            //*  ->depois de ler o csv e colocar os dados em examples e attributos
-            //*  pegar nas colunas que sao numericas e descobrir o valor maximo e minimo
-            //*  e dividir os valores por <= e > e substituir na propria coluna 
 
             //*criamos a arvore de decisao
             ROOTNode n = ID3 (new ArrayList<String[]> (Examples),Attributes.get(Attributes.size()-1),new ArrayList<String> (Attributes),"");
@@ -490,30 +508,30 @@ public class Main{
             //*Categorizacao de  um exemplo
             //todo Acabar a parte de categorizar um exemplo
             
-            /* 
-            String[] teste_ex = {"X14","Yes","No","Yes","Yes","Full","$$$","No","Yes","Thai","0-10"};
-            
+            // String[] teste_ex = {"X14","Yes","No","Yes","Yes","Full","$$$","No","Yes","Thai","0-10"};
+            //String[] teste_ex = {"1","rainy",">80","<=80","FALSE"};            
+            String[] teste_ex = {"32","<=6.1","<=3.2","<=3.95","<=1.3"};
             //Ciclo que percorre a arvore de decisao para categorizar um novo exemplo
             ROOTNode cur = n;
             int ind = getPos_col(cur.name_col);            
             Attributes.remove(ind);
+            
             int i =0;
 
+            //Ciclo que termina quando consegue categorizar um dado exemplo
             outerloop:
             while (true){
-
-                if (cur.name_col != null)
-                    System.out.println("i : " + i + " = "+  cur.name_col); 
-                if (cur.name_var != null)
-                    System.out.println("i : " + i + " = "+  cur.name_var);      
-                   
+                /* Imprime o caminho que o exemplo esta a percorrer na arvore de decisao 
+                 *if (cur.name_col != null)
+                 *    System.out.println("i : " + i + " = "+  cur.name_col); 
+                 *if (cur.name_var != null)
+                 *    System.out.println("i : " + i + " = "+  cur.name_var);      
+                */ 
                 for (ROOTNode f : cur.filhos){
+                    //procura por variavel
                     if (f.name_var != null){
-                        // if (i == 5){
-                            //System.out.printf("var = %s e teste[%d] = %s\n",f.name_var,i,teste_ex[ind]);
-                        // }
                         if (f.name_var.equals(teste_ex[ind])){
-                            System.out.printf("nosso exemplo na coluna %s  = %s\n",cur.name_col,teste_ex[ind]);
+                            // ? System.out.printf("nosso exemplo na coluna %s  = %s\n",cur.name_col,teste_ex[ind]);
 
                             //Escolhemos o respetivo filho na arvore de decisao
                             cur = f;
@@ -524,18 +542,18 @@ public class Main{
                             break;
                         }
                     }
+                    //se o nome da coluna for um dos nomes do target attribute (significa que e um no folha)
                     else if (Classes.contains(f.name_col)){
                         System.out.printf("exemplo e categorizado como: %s\n",f.name_col);
                         break outerloop;
                     }
+                    //caso nao seja nem uma variavel nem um no folha , so pode ser um atributo
                     else if (f.name_col != null){
                         //?System.out.println(f.name_col);
                         
                         //Escolhemos o respetivo filho na arvore de decisao
                         cur = f;
                         
-                        
-
                         //Atualizamos o indice 
                         ind = getPos_col(f.name_col);
                         
@@ -543,16 +561,16 @@ public class Main{
                         Attributes.remove(ind);
                         
                         break;
-                        
                     }
                     
                 }  
                 //Serve ajudar a ver os "passos" que o 
                 // nosso exemplo segue na arvore de decisao 
+                /* 
                 i++;
                 if (i == 8) break;
+                */
             }
-            */
         }
                 
     }
