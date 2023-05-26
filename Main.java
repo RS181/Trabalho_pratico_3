@@ -166,9 +166,10 @@ public class Main{
                 // for (String[] e : t.examples){
                     // System.out.println(Arrays.toString(e));
                 // }
-                for (Coluna c : t.colunas){
-                    System.out.println("->" + c.nome + t.colunas.length);
-                }
+                // System.out.println("teste");
+                // for (Coluna c : t.colunas){
+                    // System.out.println("->" + c.nome + t.colunas.length);
+                // }
                 
             }
             System.out.println(Ident+"Atributo " + A );
@@ -203,10 +204,10 @@ public class Main{
                 for (String v : temp){
                     if (!root.var_class_ind.containsKey(v)){
                         System.out.println(Ident + "      "  + v + ":");
-                        System.out.println(Ident + "         " + "Class :" + Most_Common(examples) + " " + examples.size()/2);
+                        System.out.println(Ident + "         " + "Class :" + Most_Common(examples) + " " + 0);
+                        // System.out.println(Ident + "         " + "Class :" + Most_Common(examples) + " " + examples.size()/2);
 
-                        //!Cria o filho de root para esse "caso especial"
-
+                        //! Cria o filho de root para esse "caso especial"
                         //todo VERIFICAR SE NAO CAUSA ERROS NA GERACAO DA ARVORE DE DECISAO
                         ROOTNode aux = new ROOTNode(v,0);
                         aux.filhos.add(new ROOTNode(Most_Common(examples)));
@@ -272,7 +273,7 @@ public class Main{
                 ? for (String[] ex : branch.Example_Population)
                 ?    System.out.println(Arrays.toString(ex));
                 ? System.out.println("----------------");
-                 */
+                */
                 
                 //Adicionamos o branch ao filhos do no root que inicializamos acima
                 root.filhos.add(branch);      
@@ -289,6 +290,8 @@ public class Main{
                     // "Debaixo" deste branch adicionamos a subtree respetiva
                     System.out.println(Ident +"      " + var + ":");
                     for (ROOTNode f : root.filhos){
+                        if (f == null)
+                            System.out.println("teste");
                         if (f.name_var.equals(var))
                             f.filhos.add(ID3(new ArrayList<>(new_examples),Target_Attribute,new ArrayList<>(new_attributes),Ident + "         "));
                     }
@@ -510,23 +513,22 @@ public class Main{
             
             // String[] teste_ex = {"X14","Yes","No","Yes","Yes","Full","$$$","No","Yes","Thai","0-10"};
             //String[] teste_ex = {"1","rainy",">80","<=80","FALSE"};            
-            String[] teste_ex = {"32","<=6.1","<=3.2","<=3.95","<=1.3"};
+            // String[] teste_ex = {"32","<=6.1","<=3.2","<=3.95","<=1.3"};
             //Ciclo que percorre a arvore de decisao para categorizar um novo exemplo
             ROOTNode cur = n;
             int ind = getPos_col(cur.name_col);            
             Attributes.remove(ind);
             
-            int i =0;
-
+            
             //Ciclo que termina quando consegue categorizar um dado exemplo
+            /* 
             outerloop:
             while (true){
-                /* Imprime o caminho que o exemplo esta a percorrer na arvore de decisao 
-                 *if (cur.name_col != null)
-                 *    System.out.println("i : " + i + " = "+  cur.name_col); 
-                 *if (cur.name_var != null)
-                 *    System.out.println("i : " + i + " = "+  cur.name_var);      
-                */ 
+                //* Imprime o caminho que o exemplo esta a percorrer na arvore de decisao 
+                //*if (cur.name_col != null)
+                //*    System.out.println("i : " + i + " = "+  cur.name_col); 
+                //*if (cur.name_var != null)
+                //*    System.out.println("i : " + i + " = "+  cur.name_var);      
                 for (ROOTNode f : cur.filhos){
                     //procura por variavel
                     if (f.name_var != null){
@@ -566,12 +568,13 @@ public class Main{
                 }  
                 //Serve ajudar a ver os "passos" que o 
                 // nosso exemplo segue na arvore de decisao 
-                /* 
-                i++;
-                if (i == 8) break;
-                */
-            }
-        }
+                 
+                //*i++;
+                //*if (i == 8) break;
                 
+            }
+        */
+        }
+        
     }
 }

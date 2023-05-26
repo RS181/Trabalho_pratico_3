@@ -1,35 +1,960 @@
-6 ID sepallength sepalwidth petallength petalwidth class 
-Atributo petallength
-      >3.95:
-         Atributo petalwidth
-               >1.3:
-                  Atributo sepallength
-                        <=6.1:
-                           Atributo sepalwidth
-                                 >3.2:
-                                    Class :Iris-versicolor 1
-                                 <=3.2:
-                                    Class : Iris-virginica
-                        >6.1:
-                           Atributo sepalwidth
-                                 >3.2:
-                                    Class : Iris-virginica
-                                 <=3.2:
-                                    Class : Iris-virginica
-               <=1.3:
-                  Class :Iris-versicolor 18
-      <=3.95:
-         Atributo sepalwidth
-               >3.2:
-                  Class :Iris-setosa 32
-               <=3.2:
-                  Atributo petalwidth
-                        >1.3:
-                           Class :Iris-versicolor 1
-                        <=1.3:
-                           Atributo sepallength
-                                 >6.1:
-                                    Class :Iris-setosa 14
-                                 <=6.1:
-                                    Class : Iris-setosa
-exemplo e categorizado como: Iris-setosa
+44 ID a1 a2 a3 a4 a5 a6 b1 b2 b3 b4 b5 b6 c1 c2 c3 c4 c5 c6 d1 d2 d3 d4 d5 d5 e1 e2 e3 e4 e5 e6 f1 f2 f3 f4 f5 f6 g1 g2 g3 g4 g5 g6 class 
+Atributo a1
+      b:
+         Atributo g1
+               b:
+                  Atributo d3
+                        b:
+                           Atributo d2
+                                 b:
+                                    Atributo c3
+                                          b:
+                                             Atributo c2
+                                                   b:
+                                                      Atributo b1
+                                                            b:
+                                                               Atributo f1
+                                                                     b:
+                                                                        Class :win 4
+                                                                     x:
+                                                                        Atributo f5
+                                                                              b:
+                                                                                 Atributo e3
+                                                                                       b:
+                                                                                          Class :win 6
+                                                                                       x:
+                                                                                          Atributo d1
+                                                                                                x:
+                                                                                                   Class :win 0
+                                                                                                b:
+                                                                                                   Atributo e5
+                                                                                                         b:
+                                                                                                            Atributo f2
+                                                                                                                  b:
+                                                                                                                     Class :win 0
+                                                                                                                  x:
+                                                                                                                     Class :loss 2
+                                                                                                                  o:
+                                                                                                                     Atributo e4
+                                                                                                                           b:
+                                                                                                                              Class :win 1
+                                                                                                                           x:
+                                                                                                                              Class :win 1
+                                                                                                                           o:
+                                                                                                                              Atributo e2
+                                                                                                                                    b:
+                                                                                                                                       Class :win 0
+                                                                                                                                    x:
+                                                                                                                                       Class :win 1
+                                                                                                                                    o:
+                                                                                                                                       Class :loss 1
+                                                                                                         x:
+                                                                                                            Class :loss 2
+                                                                                                         o:
+                                                                                                            Class :win 2
+                                                                                                o:
+                                                                                                   Class :win 9
+                                                                                       o:
+                                                                                          Atributo e4
+                                                                                                b:
+                                                                                                   Atributo f4
+                                                                                                         b:
+                                                                                                            Atributo f2
+                                                                                                                  b:
+                                                                                                                     Class :draw 0
+                                                                                                                  x:
+                                                                                                                     Class :draw 1
+                                                                                                                  o:
+                                                                                                                     Class :loss 1
+                                                                                                         x:
+                                                                                                            Class :loss 1
+                                                                                                         o:
+                                                                                                            Class :draw 1
+                                                                                                x:
+                                                                                                   Atributo f3
+                                                                                                         x:
+                                                                                                            Class :win 0
+                                                                                                         b:
+                                                                                                            Class :win 6
+                                                                                                         o:
+                                                                                                            Atributo e2
+                                                                                                                  b:
+                                                                                                                     Class :draw 0
+                                                                                                                  x:
+                                                                                                                     Class :loss 1
+                                                                                                                  o:
+                                                                                                                     Class :draw 1
+                                                                                                o:
+                                                                                                   Atributo e6
+                                                                                                         x:
+                                                                                                            Class :loss 0
+                                                                                                         b:
+                                                                                                            Class :loss 5
+                                                                                                         o:
+                                                                                                            Class :draw 1
+                                                                              x:
+                                                                                 Atributo e2
+                                                                                       x:
+                                                                                          Class :draw 0
+                                                                                       b:
+                                                                                          Class :draw 4
+                                                                                       o:
+                                                                                          Class :loss 1
+                                                                              o:
+                                                                                 Atributo e2
+                                                                                       b:
+                                                                                          Class :win 2
+                                                                                       x:
+                                                                                          Class :win 2
+                                                                                       o:
+                                                                                          Class :loss 2
+                                                                     o:
+                                                                        Atributo f3
+                                                                              b:
+                                                                                 Class :win 16
+                                                                              x:
+                                                                                 Atributo e3
+                                                                                       b:
+                                                                                          Class :win 7
+                                                                                       x:
+                                                                                          Class :win 4
+                                                                                       o:
+                                                                                          Atributo f2
+                                                                                                b:
+                                                                                                   Class :loss 0
+                                                                                                x:
+                                                                                                   Atributo f4
+                                                                                                         x:
+                                                                                                            Class :loss 0
+                                                                                                         b:
+                                                                                                            Class :loss 2
+                                                                                                         o:
+                                                                                                            Class :win 1
+                                                                                                o:
+                                                                                                   Class :draw 1
+                                                                              o:
+                                                                                 Atributo f6
+                                                                                       b:
+                                                                                          Atributo e4
+                                                                                                b:
+                                                                                                   Atributo f5
+                                                                                                         b:
+                                                                                                            Class :win 6
+                                                                                                         x:
+                                                                                                            Class :win 1
+                                                                                                         o:
+                                                                                                            Atributo c1
+                                                                                                                  b:
+                                                                                                                     Class :win 0
+                                                                                                                  x:
+                                                                                                                     Class :draw 1
+                                                                                                                  o:
+                                                                                                                     Class :win 1
+                                                                                                x:
+                                                                                                   Class :win 1
+                                                                                                o:
+                                                                                                   Class :draw 1
+                                                                                       x:
+                                                                                          Atributo d1
+                                                                                                x:
+                                                                                                   Class :win 0
+                                                                                                b:
+                                                                                                   Class :loss 1
+                                                                                                o:
+                                                                                                   Class :win 1
+                                                                                       o:
+                                                                                          Class :win 2
+                                                            x:
+                                                               Atributo e3
+                                                                     b:
+                                                                        Atributo b6
+                                                                              b:
+                                                                                 Atributo b5
+                                                                                       b:
+                                                                                          Atributo f1
+                                                                                                b:
+                                                                                                   Atributo b3
+                                                                                                         b:
+                                                                                                            Class :win 0
+                                                                                                         x:
+                                                                                                            Atributo c1
+                                                                                                                  b:
+                                                                                                                     Class :win 0
+                                                                                                                  x:
+                                                                                                                     Atributo b4
+                                                                                                                           b:
+                                                                                                                              Class :draw 0
+                                                                                                                           x:
+                                                                                                                              Class :loss 1
+                                                                                                                           o:
+                                                                                                                              Class :draw 2
+                                                                                                                  o:
+                                                                                                                     Atributo e1
+                                                                                                                           b:
+                                                                                                                              Class :win 0
+                                                                                                                           x:
+                                                                                                                              Class :loss 1
+                                                                                                                           o:
+                                                                                                                              Class :win 2
+                                                                                                         o:
+                                                                                                            Atributo b2
+                                                                                                                  b:
+                                                                                                                     Class :win 0
+                                                                                                                  x:
+                                                                                                                     Atributo b4
+                                                                                                                           b:
+                                                                                                                              Class :win 0
+                                                                                                                           x:
+                                                                                                                              Atributo c1
+                                                                                                                                    b:
+                                                                                                                                       Class :win 0
+                                                                                                                                    x:
+                                                                                                                                       Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Class :win 1
+                                                                                                                           o:
+                                                                                                                              Class :win 2
+                                                                                                                  o:
+                                                                                                                     Class :win 3
+                                                                                                x:
+                                                                                                   Atributo d1
+                                                                                                         b:
+                                                                                                            Atributo b4
+                                                                                                                  b:
+                                                                                                                     Atributo c1
+                                                                                                                           b:
+                                                                                                                              Class :win 3
+                                                                                                                           x:
+                                                                                                                              Atributo f4
+                                                                                                                                    b:
+                                                                                                                                       Atributo f3
+                                                                                                                                             b:
+                                                                                                                                                Atributo b2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :loss 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 3
+                                                                                                                                             x:
+                                                                                                                                                Atributo b3
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 6
+                                                                                                                                    x:
+                                                                                                                                       Class :win 3
+                                                                                                                                    o:
+                                                                                                                                       Atributo b3
+                                                                                                                                             x:
+                                                                                                                                                Class :win 0
+                                                                                                                                             b:
+                                                                                                                                                Atributo f5
+                                                                                                                                                      x:
+                                                                                                                                                         Class :loss 0
+                                                                                                                                                      b:
+                                                                                                                                                         Class :loss 3
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Class :win 2
+                                                                                                                           o:
+                                                                                                                              Atributo e1
+                                                                                                                                    b:
+                                                                                                                                       Atributo f5
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 7
+                                                                                                                                             x:
+                                                                                                                                                Class :loss 2
+                                                                                                                                             o:
+                                                                                                                                                Atributo f2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :draw 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                                      o:
+                                                                                                                                                         Atributo f4
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :draw 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :draw 2
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                    x:
+                                                                                                                                       Class :win 1
+                                                                                                                                    o:
+                                                                                                                                       Class :loss 5
+                                                                                                                  x:
+                                                                                                                     Atributo f4
+                                                                                                                           x:
+                                                                                                                              Class :win 0
+                                                                                                                           b:
+                                                                                                                              Atributo e1
+                                                                                                                                    b:
+                                                                                                                                       Atributo c1
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 0
+                                                                                                                                             x:
+                                                                                                                                                Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Atributo f3
+                                                                                                                                                      b:
+                                                                                                                                                         Class :loss 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 3
+                                                                                                                                    x:
+                                                                                                                                       Class :win 1
+                                                                                                                                    o:
+                                                                                                                                       Atributo c1
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 1
+                                                                                                                                             x:
+                                                                                                                                                Atributo e2
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Atributo b2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Atributo e2
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 3
+                                                                                                                           o:
+                                                                                                                              Class :win 2
+                                                                                                                  o:
+                                                                                                                     Atributo c1
+                                                                                                                           b:
+                                                                                                                              Class :loss 2
+                                                                                                                           x:
+                                                                                                                              Atributo b2
+                                                                                                                                    b:
+                                                                                                                                       Class :draw 0
+                                                                                                                                    x:
+                                                                                                                                       Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Class :draw 2
+                                                                                                                           o:
+                                                                                                                              Class :loss 10
+                                                                                                         x:
+                                                                                                            Atributo b3
+                                                                                                                  b:
+                                                                                                                     Atributo f3
+                                                                                                                           b:
+                                                                                                                              Class :win 0
+                                                                                                                           x:
+                                                                                                                              Atributo b2
+                                                                                                                                    x:
+                                                                                                                                       Class :draw 0
+                                                                                                                                    b:
+                                                                                                                                       Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Class :draw 1
+                                                                                                                           o:
+                                                                                                                              Atributo b2
+                                                                                                                                    x:
+                                                                                                                                       Class :win 0
+                                                                                                                                    b:
+                                                                                                                                       Class :win 1
+                                                                                                                                    o:
+                                                                                                                                       Atributo f2
+                                                                                                                                             b:
+                                                                                                                                                Class :win 0
+                                                                                                                                             x:
+                                                                                                                                                Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 1
+                                                                                                                  x:
+                                                                                                                     Atributo b4
+                                                                                                                           x:
+                                                                                                                              Class :loss 0
+                                                                                                                           b:
+                                                                                                                              Atributo e1
+                                                                                                                                    x:
+                                                                                                                                       Class :draw 0
+                                                                                                                                    b:
+                                                                                                                                       Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Class :draw 1
+                                                                                                                           o:
+                                                                                                                              Class :loss 2
+                                                                                                                  o:
+                                                                                                                     Atributo b4
+                                                                                                                           b:
+                                                                                                                              Atributo f3
+                                                                                                                                    b:
+                                                                                                                                       Class :win 2
+                                                                                                                                    x:
+                                                                                                                                       Atributo c1
+                                                                                                                                             x:
+                                                                                                                                                Class :win 0
+                                                                                                                                             b:
+                                                                                                                                                Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Atributo c1
+                                                                                                                                             x:
+                                                                                                                                                Class :loss 0
+                                                                                                                                             b:
+                                                                                                                                                Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 2
+                                                                                                                           x:
+                                                                                                                              Class :win 3
+                                                                                                                           o:
+                                                                                                                              Atributo e1
+                                                                                                                                    x:
+                                                                                                                                       Class :win 0
+                                                                                                                                    b:
+                                                                                                                                       Class :win 1
+                                                                                                                                    o:
+                                                                                                                                       Class :draw 1
+                                                                                                         o:
+                                                                                                            Atributo c1
+                                                                                                                  b:
+                                                                                                                     Atributo b3
+                                                                                                                           b:
+                                                                                                                              Class :win 3
+                                                                                                                           x:
+                                                                                                                              Atributo b4
+                                                                                                                                    b:
+                                                                                                                                       Class :draw 0
+                                                                                                                                    x:
+                                                                                                                                       Class :draw 3
+                                                                                                                                    o:
+                                                                                                                                       Atributo b2
+                                                                                                                                             b:
+                                                                                                                                                Class :win 0
+                                                                                                                                             x:
+                                                                                                                                                Class :win 2
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 1
+                                                                                                                           o:
+                                                                                                                              Atributo f3
+                                                                                                                                    b:
+                                                                                                                                       Atributo f2
+                                                                                                                                             b:
+                                                                                                                                                Atributo b4
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 1
+                                                                                                                                             x:
+                                                                                                                                                Class :win 2
+                                                                                                                                             o:
+                                                                                                                                                Atributo b4
+                                                                                                                                                      b:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                    x:
+                                                                                                                                       Class :win 5
+                                                                                                                                    o:
+                                                                                                                                       Atributo b2
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 0
+                                                                                                                                             x:
+                                                                                                                                                Class :loss 2
+                                                                                                                                             o:
+                                                                                                                                                Class :win 1
+                                                                                                                  x:
+                                                                                                                     Atributo f4
+                                                                                                                           b:
+                                                                                                                              Atributo e1
+                                                                                                                                    b:
+                                                                                                                                       Atributo b4
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 4
+                                                                                                                                             x:
+                                                                                                                                                Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 2
+                                                                                                                                    x:
+                                                                                                                                       Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Atributo f3
+                                                                                                                                             b:
+                                                                                                                                                Atributo b3
+                                                                                                                                                      b:
+                                                                                                                                                         Atributo e2
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :loss 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 2
+                                                                                                                                                      x:
+                                                                                                                                                         Atributo b4
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :draw 0
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :draw 2
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Atributo b4
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 4
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                             x:
+                                                                                                                                                Atributo b2
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 0
+                                                                                                                                                      b:
+                                                                                                                                                         Class :draw 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Class :win 4
+                                                                                                                           x:
+                                                                                                                              Class :win 3
+                                                                                                                           o:
+                                                                                                                              Class :loss 4
+                                                                                                                  o:
+                                                                                                                     Atributo f3
+                                                                                                                           b:
+                                                                                                                              Atributo b4
+                                                                                                                                    b:
+                                                                                                                                       Class :win 3
+                                                                                                                                    x:
+                                                                                                                                       Class :win 5
+                                                                                                                                    o:
+                                                                                                                                       Atributo b3
+                                                                                                                                             b:
+                                                                                                                                                Class :win 0
+                                                                                                                                             x:
+                                                                                                                                                Class :win 2
+                                                                                                                                             o:
+                                                                                                                                                Class :draw 1
+                                                                                                                           x:
+                                                                                                                              Class :win 4
+                                                                                                                           o:
+                                                                                                                              Class :loss 1
+                                                                                                o:
+                                                                                                   Atributo c1
+                                                                                                         b:
+                                                                                                            Atributo d1
+                                                                                                                  b:
+                                                                                                                     Atributo e1
+                                                                                                                           b:
+                                                                                                                              Atributo b3
+                                                                                                                                    b:
+                                                                                                                                       Class :win 6
+                                                                                                                                    x:
+                                                                                                                                       Class :win 9
+                                                                                                                                    o:
+                                                                                                                                       Atributo f5
+                                                                                                                                             b:
+                                                                                                                                                Atributo f3
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 4
+                                                                                                                                                      o:
+                                                                                                                                                         Atributo b4
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                             x:
+                                                                                                                                                Atributo f2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Atributo f4
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :loss 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 2
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 1
+                                                                                                                                             o:
+                                                                                                                                                Class :win 3
+                                                                                                                           x:
+                                                                                                                              Atributo b2
+                                                                                                                                    b:
+                                                                                                                                       Class :win 0
+                                                                                                                                    x:
+                                                                                                                                       Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Class :win 1
+                                                                                                                           o:
+                                                                                                                              Atributo e2
+                                                                                                                                    b:
+                                                                                                                                       Atributo b3
+                                                                                                                                             b:
+                                                                                                                                                Atributo f6
+                                                                                                                                                      b:
+                                                                                                                                                         Atributo f5
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Atributo b2
+                                                                                                                                                                        b:
+                                                                                                                                                                           Class :loss 0
+                                                                                                                                                                        x:
+                                                                                                                                                                           Atributo f2
+                                                                                                                                                                                 b:
+                                                                                                                                                                                    Class :win 0
+                                                                                                                                                                                 x:
+                                                                                                                                                                                    Class :win 1
+                                                                                                                                                                                 o:
+                                                                                                                                                                                    Class :loss 1
+                                                                                                                                                                        o:
+                                                                                                                                                                           Class :loss 2
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :win 4
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 2
+                                                                                                                                             x:
+                                                                                                                                                Atributo f4
+                                                                                                                                                      b:
+                                                                                                                                                         Atributo b2
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :loss 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Atributo f2
+                                                                                                                                                                        b:
+                                                                                                                                                                           Class :win 0
+                                                                                                                                                                        x:
+                                                                                                                                                                           Class :win 1
+                                                                                                                                                                        o:
+                                                                                                                                                                           Class :loss 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Atributo f2
+                                                                                                                                                                        b:
+                                                                                                                                                                           Class :loss 0
+                                                                                                                                                                        x:
+                                                                                                                                                                           Class :loss 2
+                                                                                                                                                                        o:
+                                                                                                                                                                           Class :win 1
+                                                                                                                                                      x:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :draw 1
+                                                                                                                                             o:
+                                                                                                                                                Atributo b4
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 3
+                                                                                                                                                      x:
+                                                                                                                                                         Atributo f2
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 2
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :draw 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :draw 1
+                                                                                                                                    x:
+                                                                                                                                       Atributo b3
+                                                                                                                                             b:
+                                                                                                                                                Class :win 6
+                                                                                                                                             x:
+                                                                                                                                                Class :win 4
+                                                                                                                                             o:
+                                                                                                                                                Atributo f3
+                                                                                                                                                      b:
+                                                                                                                                                         Atributo b4
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 2
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Atributo b2
+                                                                                                                                             b:
+                                                                                                                                                Atributo f4
+                                                                                                                                                      b:
+                                                                                                                                                         Class :draw 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 2
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             x:
+                                                                                                                                                Atributo f4
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 3
+                                                                                                                                                      x:
+                                                                                                                                                         Atributo f2
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 2
+                                                                                                                  x:
+                                                                                                                     Class :win 2
+                                                                                                                  o:
+                                                                                                                     Atributo b2
+                                                                                                                           b:
+                                                                                                                              Atributo f3
+                                                                                                                                    b:
+                                                                                                                                       Class :loss 0
+                                                                                                                                    x:
+                                                                                                                                       Class :draw 1
+                                                                                                                                    o:
+                                                                                                                                       Class :loss 2
+                                                                                                                           x:
+                                                                                                                              Atributo b4
+                                                                                                                                    b:
+                                                                                                                                       Atributo f2
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 0
+                                                                                                                                             x:
+                                                                                                                                                Atributo f5
+                                                                                                                                                      b:
+                                                                                                                                                         Atributo f3
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 2
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 3
+                                                                                                                                    x:
+                                                                                                                                       Class :loss 2
+                                                                                                                                    o:
+                                                                                                                                       Class :win 3
+                                                                                                                           o:
+                                                                                                                              Class :loss 9
+                                                                                                         x:
+                                                                                                            Atributo d1
+                                                                                                                  x:
+                                                                                                                     Class :win 0
+                                                                                                                  b:
+                                                                                                                     Atributo e2
+                                                                                                                           b:
+                                                                                                                              Class :win 45
+                                                                                                                           x:
+                                                                                                                              Class :win 10
+                                                                                                                           o:
+                                                                                                                              Atributo b2
+                                                                                                                                    b:
+                                                                                                                                       Atributo f2
+                                                                                                                                             b:
+                                                                                                                                                Class :win 0
+                                                                                                                                             x:
+                                                                                                                                                Class :win 2
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 1
+                                                                                                                                    x:
+                                                                                                                                       Class :win 5
+                                                                                                                                    o:
+                                                                                                                                       Atributo b3
+                                                                                                                                             o:
+                                                                                                                                                Class :win 0
+                                                                                                                                             b:
+                                                                                                                                                Class :win 1
+                                                                                                                                             x:
+                                                                                                                                                Atributo b4
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      b:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                  o:
+                                                                                                                     Atributo f2
+                                                                                                                           b:
+                                                                                                                              Atributo b2
+                                                                                                                                    b:
+                                                                                                                                       Class :win 0
+                                                                                                                                    x:
+                                                                                                                                       Class :draw 1
+                                                                                                                                    o:
+                                                                                                                                       Class :win 1
+                                                                                                                           x:
+                                                                                                                              Atributo b4
+                                                                                                                                    b:
+                                                                                                                                       Atributo f5
+                                                                                                                                             b:
+                                                                                                                                                Atributo b3
+                                                                                                                                                      b:
+                                                                                                                                                         Atributo f3
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :win 2
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Atributo b2
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :win 1
+                                                                                                                                             x:
+                                                                                                                                                Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Class :win 2
+                                                                                                                                    x:
+                                                                                                                                       Class :win 1
+                                                                                                                                    o:
+                                                                                                                                       Class :loss 2
+                                                                                                                           o:
+                                                                                                                              Atributo f4
+                                                                                                                                    b:
+                                                                                                                                       Atributo b2
+                                                                                                                                             b:
+                                                                                                                                                Class :win 0
+                                                                                                                                             x:
+                                                                                                                                                Class :win 3
+                                                                                                                                             o:
+                                                                                                                                                Atributo b4
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 1
+                                                                                                                                    x:
+                                                                                                                                       Class :win 3
+                                                                                                                                    o:
+                                                                                                                                       Class :draw 2
+                                                                                                         o:
+                                                                                                            Atributo e1
+                                                                                                                  b:
+                                                                                                                     Atributo d1
+                                                                                                                           o:
+                                                                                                                              Class :win 0
+                                                                                                                           b:
+                                                                                                                              Atributo b3
+                                                                                                                                    b:
+                                                                                                                                       Atributo f6
+                                                                                                                                             b:
+                                                                                                                                                Atributo f5
+                                                                                                                                                      b:
+                                                                                                                                                         Class :loss 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :loss 4
+                                                                                                                                                      o:
+                                                                                                                                                         Atributo b2
+                                                                                                                                                               b:
+                                                                                                                                                                  Class :win 0
+                                                                                                                                                               x:
+                                                                                                                                                                  Atributo f2
+                                                                                                                                                                        b:
+                                                                                                                                                                           Class :win 0
+                                                                                                                                                                        x:
+                                                                                                                                                                           Class :win 2
+                                                                                                                                                                        o:
+                                                                                                                                                                           Class :loss 1
+                                                                                                                                                               o:
+                                                                                                                                                                  Class :loss 1
+                                                                                                                                             x:
+                                                                                                                                                Class :draw 1
+                                                                                                                                             o:
+                                                                                                                                                Class :win 2
+                                                                                                                                    x:
+                                                                                                                                       Atributo b4
+                                                                                                                                             b:
+                                                                                                                                                Class :loss 2
+                                                                                                                                             x:
+                                                                                                                                                Atributo f2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Atributo f2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 2
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                    o:
+                                                                                                                                       Atributo b4
+                                                                                                                                             b:
+                                                                                                                                                Atributo f4
+                                                                                                                                                      b:
+                                                                                                                                                         Class :draw 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 2
+                                                                                                                                                      o:
+                                                                                                                                                         Class :win 1
+                                                                                                                                             x:
+                                                                                                                                                Atributo f2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :draw 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :draw 2
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Class :win 1
+                                                                                                                           x:
+                                                                                                                              Atributo b3
+                                                                                                                                    b:
+                                                                                                                                       Class :win 5
+                                                                                                                                    x:
+                                                                                                                                       Class :win 4
+                                                                                                                                    o:
+                                                                                                                                       Atributo f3
+                                                                                                                                             b:
+                                                                                                                                                Class :win 2
+                                                                                                                                             x:
+                                                                                                                                                Atributo b2
+                                                                                                                                                      b:
+                                                                                                                                                         Class :win 0
+                                                                                                                                                      x:
+                                                                                                                                                         Class :win 1
+                                                                                                                                                      o:
+                                                                                                                                                         Class :loss 1
+                                                                                                                                             o:
+                                                                                                                                                Class :loss 1
+                                                                                                                  x:
+                                                                                                                     Atributo b2
+                                                                                                                           b:
+                                                                                                                              Atributo null

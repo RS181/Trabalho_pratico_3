@@ -4,7 +4,7 @@ class ROOTNode {
     Map <String ,Set<Integer>> class_indice ;               //Mapa (class -> {indice's} )
     Map<String,Map<String,Set<Integer>>> var_class_ind;     //Mapa (var -> (class -> {indice's}) )  
     double Entropia_R;                                      //Contem a entropia do no atual 
-    ArrayList <ROOTNode> filhos;                        //filhos (caso existam de um no)
+    ArrayList <ROOTNode> filhos;                            //filhos (caso existam de um no)
 
     ArrayList<String[]> Example_Population;                 //Populacao de exemplo 
     ArrayList<String> Original_attributes;                  //atributos ou colunas
@@ -14,7 +14,7 @@ class ROOTNode {
     String name_var;                                        //Contem o nome da variavel que este no esta a representar
     Coluna col;                                             //Contem os dados da coluna atual (usamos quando queremos descobrir o best splitting atribute)
     
-    String leaf_class;                                      // no folha Contem o nome da classe mais comum
+    // String leaf_class;                                      // no folha Contem o nome da classe mais comum
     ROOTNode(){
 
     }
@@ -24,7 +24,7 @@ class ROOTNode {
         name_col = nome_class;
     }
 
-    //Contrutor "especial para lidar com casos "especiasi" ler ID3 que esta na linha 176
+    //Contrutor "especial para lidar com casos "especias" ler ID3 que esta na linha 176
     ROOTNode(String name_var,int dif){
         //dif nao faz nada , e so para distinguir do construtor de cima
         filhos = new ArrayList<>();
@@ -65,10 +65,8 @@ class ROOTNode {
         // Print_Class_Examples();
         
         Calculate_Entropia();
-        // Create_Decisions_Nodes();    //esta no backup
-
-        // Calculate_Information_Gain();  esta no backup 
     }
+
     @Override
     public String toString(){
         return name_col;
@@ -128,9 +126,9 @@ class ROOTNode {
         // System.out.println("    Numero de classes: " + nr_classes); 
 
         //Calculo da entropia
-        String calc = "";
+        // String calc = "";
         for (String s : class_indice.keySet()){
-            calc += "(-(" + class_indice.get(s).size() + "/" + total + ")log2(" + class_indice.get(s).size() + "/" + total + ")) * ";
+            // calc += "(-(" + class_indice.get(s).size() + "/" + total + ")log2(" + class_indice.get(s).size() + "/" + total + ")) * ";
             Entropia_R -= (double)(class_indice.get(s).size()/ (double)total) *log2((double)(class_indice.get(s).size() / (double)total));
             // System.out.println("    " +calc + " = " + Entropia_R) ;
         }

@@ -26,7 +26,7 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
         System.out.println("-------------------");
     }
     
-    //Inicializa mapa_coluna (vre "definicao" de mapa_coluna acima)
+    //Inicializa mapa_coluna (ver "definicao" de mapa_coluna acima)
     void Iniatialize(int nr_col,ArrayList<String> col,ArrayList<String[]> examples){
         
         for (int i = 0 ; i < examples.size() ;i++){
