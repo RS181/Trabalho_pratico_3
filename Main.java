@@ -146,7 +146,7 @@ public class Main{
         
         //nao temos mais atributos (attributes.size() <= 2 ,ID e class)
         if (attributes.size() <= 2){
-            System.out.println(Ident+"Class : " + Most_Common(examples));
+            System.out.println(Ident+"Class :" + Most_Common(examples) +" "+ examples.size());
             return new ROOTNode(Most_Common(examples));
         }
         
@@ -162,16 +162,14 @@ public class Main{
             */
 
             String A = t.best_splitting_attribute;
-            if (A == null){
-                // for (String[] e : t.examples){
-                    // System.out.println(Arrays.toString(e));
-                // }
-                // System.out.println("teste");
-                // for (Coluna c : t.colunas){
-                    // System.out.println("->" + c.nome + t.colunas.length);
-                // }
-                
+            /* 
+            if (A==null){
+                System.out.println(attributes);
+                for (String[] e : examples)
+                    System.out.println(Arrays.toString(e));
             }
+            */
+            
             System.out.println(Ident+"Atributo " + A );
             
 
@@ -290,11 +288,13 @@ public class Main{
                     // "Debaixo" deste branch adicionamos a subtree respetiva
                     System.out.println(Ident +"      " + var + ":");
                     for (ROOTNode f : root.filhos){
-                        if (f == null)
-                            System.out.println("teste");
-                        if (f.name_var.equals(var))
+                        
+                        if (f.name_var.equals(var)){
+                            
                             f.filhos.add(ID3(new ArrayList<>(new_examples),Target_Attribute,new ArrayList<>(new_attributes),Ident + "         "));
-                    }
+                            
+                            }
+                        }
                 }
 
             }
@@ -497,11 +497,10 @@ public class Main{
 
 
 
-            //* Imprimimos informacao necessaria para adicionar um exemplo (nr de atributos e atributos em si)
-            System.out.print (Attributes.size() + " ");
-            for (String atr : Attributes)
-                System.out.print(atr + " ");
-            System.out.println();
+            //System.out.print (Attributes.size() + " ");
+            //for (String atr : Attributes)
+            //    System.out.print(atr + " ");
+            // System.out.println();
 
 
             //*criamos a arvore de decisao
@@ -509,12 +508,10 @@ public class Main{
 
 
             //*Categorizacao de  um exemplo
-            //todo Acabar a parte de categorizar um exemplo
             
-            // String[] teste_ex = {"X14","Yes","No","Yes","Yes","Full","$$$","No","Yes","Thai","0-10"};
-            //String[] teste_ex = {"1","rainy",">80","<=80","FALSE"};            
-            // String[] teste_ex = {"32","<=6.1","<=3.2","<=3.95","<=1.3"};
-            //Ciclo que percorre a arvore de decisao para categorizar um novo exemplo
+            //String[] teste_ex = {"X14","Yes","No","Yes","Yes","Full","$$$","No","Yes","French","0-10"};
+            // String[] teste_ex = {"1","sunny","80","80","FALSE"};            
+            // String[] teste_ex = {"32","<=6.1","<=3.2","<=3.95",">1.3"};
             ROOTNode cur = n;
             int ind = getPos_col(cur.name_col);            
             Attributes.remove(ind);
@@ -573,7 +570,7 @@ public class Main{
                 //*if (i == 8) break;
                 
             }
-        */
+            */
         }
         
     }

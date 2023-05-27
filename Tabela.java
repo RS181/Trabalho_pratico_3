@@ -84,6 +84,8 @@ class Tabela {
         }
         for (int k = 0 ; k < colunas.length; k++){
             if (colunas[k] == null) {
+                if (best_splitting_attribute == null)
+                    System.out.println("Encontrei o erro");
                 break;
             }
             Coluna aux = colunas[k];
@@ -151,13 +153,18 @@ class Tabela {
                 
                 Best_Entropy = Cur_Gain;
                 best_splitting_attribute = n.name_col;
+        
             }
-            
             // System.out.println("=============");
             // System.out.println("->" + best_splitting_attribute + " = " + Best_Entropy);
             // System.out.println("=============");
 
         }
+        // if (best_splitting_attribute == null){
+            // if (Best_Entropy == Double.MIN_VALUE)
+                // System.out.println("->ola");
+            // 
+        // }
 
     }
 }
