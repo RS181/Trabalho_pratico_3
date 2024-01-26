@@ -1,0 +1,15 @@
+Atributo Weather
+      rainy:
+         Atributo Windy
+               TRUE:
+                  Class :no 2
+               FALSE:
+                  Class :yes 3
+      overcast:
+         Class :yes 4
+      sunny:
+         Atributo Humidity
+               <=80:
+                  Class :yes 2
+               >80:
+                  Class :no 3

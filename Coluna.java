@@ -26,9 +26,7 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
         System.out.println("-------------------");
     }
     
-    //Inicializa mapa_coluna
-    //! para juntar em intervalos os valores numericos 
-    //! tem que ser neste Iniatialiaze 
+    //Inicializa mapa_coluna (ver "definicao" de mapa_coluna acima)
     void Iniatialize(int nr_col,ArrayList<String> col,ArrayList<String[]> examples){
         
         for (int i = 0 ; i < examples.size() ;i++){
@@ -63,7 +61,7 @@ class Coluna{   //Representa uma coluna na tabela auxiliar
         return ans;
     } 
 
-    //inicializa m
+    //inicializa m (ver "definicao" de m acima)
     void Iniatialize(){
         for (String var : mapa_coluna.keySet()){
             Map<String,String> aux = mapa_coluna.get(var);
